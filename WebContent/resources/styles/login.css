@@ -1,0 +1,22 @@
+h1 {
+	text-align:center;
+	color:#337ab7;
+}
+
+#btnLogin {
+	background-color:#071263;
+	color:#FFFFFF;
+}
+
+#btnLogin:hover{
+	background-color:#030c4f;
+
+}
+
+
+
+#btnAutenticacao,
+#btnGerarCertidao {
+	font-size:17px;
+	height:65px;
+}
