@@ -1,0 +1,36 @@
+.container-fluid {
+	margin-top:10%;
+}
+
+a {
+	color:#FFFFFF;	
+	text-align:center;
+	font-size:18px;
+	padding:45px;
+}
+
+a:hover {
+	color:#FFFFFF;
+	cursor:pointer;
+}
+
+a:focus {
+	color:#FFFFFF;
+	cursor:pointer;
+}
+
+label {
+	cursor:pointer;
+}
+
+.btn-menu {
+	border-color: #6A4F23;
+	background-color: #337ab7;
+	border-radius:12px;
+	height:120px;
+}
+
+.btn-menu:hover {
+	background-color: #13426A;
+	border-color: #13426A;
+}

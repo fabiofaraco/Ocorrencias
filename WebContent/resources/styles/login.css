@@ -1,22 +1,45 @@
-h1 {
-	text-align:center;
-	color:#337ab7;
+h1{
+	font-family: 'Roboto', sans-serif;
+	font-size: 2em;
+	text-align: center;
+	color: #337ab7;
 }
 
-#btnLogin {
-	background-color:#071263;
-	color:#FFFFFF;
+.btn-info{
+	background-color: #B78433;
+	border-color: #6A4F23;
 }
 
-#btnLogin:hover{
-	background-color:#030c4f;
-
+.btn-info:hover{
+	background-color: #6A4F23;
+	border-color: #6A4F23;
 }
 
+.btn-gerar-certidao{
+	margin-top: 30px;
+}
 
+.btn-primary{
+	background-color: #337ab7;
+}
 
-#btnAutenticacao,
-#btnGerarCertidao {
-	font-size:17px;
-	height:65px;
+.btn-primary:hover{
+	background-color: #13426A;
+	border-color: #13426A;
+}
+
+.login-wrapper{
+	padding-top: 20px;
+	background-color: #eee;
+	border: 1px solid #ccc;
+}
+
+@media (min-width: 768px){
+	h1{
+		font-size: 2.3em;
+	}
+
+	.btn-info{
+		margin-top: 30px;
+	}
 }

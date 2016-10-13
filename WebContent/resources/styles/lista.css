@@ -1,0 +1,41 @@
+thead {
+	background-color: #337ab7;
+	color:#FFFFFF;
+}
+
+th {	
+	font-size:17px;
+}
+
+td {
+	font-size:16px;
+}
+.btn-lista{
+	background-color: #B78433;
+	border-color: #6A4F23;
+	color:#FFFFFF;
+}
+
+.btn-lista:hover {
+	background-color: #6A4F23;
+	border-color: #6A4F23;
+	color:#FFFFFF;
+}
+
+.btn-lista:focus {
+	background-color: #6A4F23;
+	border-color: #6A4F23;
+	color:#FFFFFF;
+}
+
+.table-responsive {
+	border:none;
+}
+
+.container-fluid {
+	padding: 10px;
+}
+
+.label-control {
+	font-size:17px;
+}
