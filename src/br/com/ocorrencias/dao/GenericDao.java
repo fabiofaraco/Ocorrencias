@@ -80,6 +80,9 @@ public class GenericDao<T> implements Dao<T> {
 		EntityManager manager = PersistenceUtil.getEntityManager();
 		try{
 			return manager.find(persistentClass, id);
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
 		} finally {
 			manager.close();
 		}

@@ -1,0 +1,22 @@
+.panel-heading {
+	background-color: #337ab7 !important;
+	color:#FFFFFF !important;
+}
+
+.label-control {
+	font-size:17px;
+}
+
+.btn-cadastro{
+	background-color: #B78433;
+	border-color: #6A4F23;
+	color:#FFFFFF;
+	font-size:20px;
+}
+
+.btn-cadastro:hover,
+.btn-cadastro:focus {
+	background-color: #6A4F23;
+	border-color: #6A4F23;
+	color:#FFFFFF;
+}

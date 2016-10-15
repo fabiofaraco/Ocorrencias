@@ -10,18 +10,20 @@ th {
 td {
 	font-size:16px;
 }
+
+.modal-header, h3 {
+    background-color: #337ab7;
+    color:#FFFFFF !important;
+    font-size: 30px;
+}
+
 .btn-lista{
 	background-color: #B78433;
 	border-color: #6A4F23;
 	color:#FFFFFF;
 }
 
-.btn-lista:hover {
-	background-color: #6A4F23;
-	border-color: #6A4F23;
-	color:#FFFFFF;
-}
-
+.btn-lista:hover,
 .btn-lista:focus {
 	background-color: #6A4F23;
 	border-color: #6A4F23;
