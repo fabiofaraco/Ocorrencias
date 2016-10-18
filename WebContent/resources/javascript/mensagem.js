@@ -15,9 +15,5 @@ $(document).ready(function() {
 	if($('.msg-danger').html() != '') {
 		$('#danger').css("display", "block");
 	}
-	
-	$('.close').click(function(){
-	//	$('.alert').css("display", "none");
-	});
 })
 	
