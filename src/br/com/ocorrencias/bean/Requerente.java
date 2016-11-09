@@ -1,6 +1,6 @@
 package br.com.ocorrencias.bean;
 
-import java.util.Calendar;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -29,26 +29,23 @@ public class Requerente {
 	@Column(name="CPF")
 	private Long cpf;
 	
-	public void setCpf(Long cpf) {
-		this.cpf = cpf;
-	}
 	@Column(name="EMAIL")
 	private String email;
 	
 	@Embedded
-	private Endereco endereco;
+	private Endereco endereco = new Endereco();
 	
 	@Embedded
-	private Telefone telefone;
+	private Telefone telefone = new Telefone();
 	
 	@Temporal(TemporalType.DATE)
 	@Column(name="DT_REQUISICAO")
-	private Calendar dataRequisicao;
+	private Date dataRequisicao = new Date();
 	
 	@Temporal(TemporalType.DATE)
 	@Column(name="DT_NASCIMENTO")
-	private Calendar dataNascimento;
-	
+	private Date dataNascimento;
+		
 	public int getId() {
 		return id;
 	}
@@ -85,16 +82,22 @@ public class Requerente {
 	public void setTelefone(Telefone telefone) {
 		this.telefone = telefone;
 	}
-	public Calendar getDataRequisicao() {
+	public Date getDataRequisicao() {
 		return dataRequisicao;
 	}
-	public void setDataRequisicao(Calendar dataRequisicao) {
+	public void setDataRequisicao(Date dataRequisicao) {
 		this.dataRequisicao = dataRequisicao;
 	}
-	public Calendar getDataNascimento() {
+	public Date getDataNascimento() {
 		return dataNascimento;
 	}
-	public void setDataNascimento(Calendar dataNascimento) {
+	public void setDataNascimento(Date dataNascimento) {
 		this.dataNascimento = dataNascimento;
+	}
+	public Long getCpf() {
+		return cpf;
+	}
+	public void setCpf(Long cpf) {
+		this.cpf = cpf;
 	}
 }

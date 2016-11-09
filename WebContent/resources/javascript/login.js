@@ -1,6 +1,7 @@
 $(document).ready(function() { 
 	
-	if($('.msg').html() != '') {
+	if($('.msg').html() != null && $('.msg').html() != '') {
+		alert($('.msg').html());
 		exibirAlerta();
 	}
 	

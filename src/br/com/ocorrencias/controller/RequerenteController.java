@@ -1,8 +1,10 @@
 package br.com.ocorrencias.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
@@ -14,7 +16,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import br.com.ocorrencias.bean.Requerente;
 import br.com.ocorrencias.dao.Dao;
 import br.com.ocorrencias.dao.GenericDao;
-import br.com.ocorrencias.propertyEditor.DataPropertyEditor;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -24,7 +25,12 @@ public class RequerenteController {
 	
 	@InitBinder
 	public void customizeBinding(WebDataBinder binder) {
-		binder.registerCustomEditor(Date.class,  new DataPropertyEditor());
+		
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		dateFormat.setLenient(false);
+		
+		binder.registerCustomEditor(Date.class, "dataNascimento", new CustomDateEditor(dateFormat, true));
+		binder.registerCustomEditor(Date.class, "dataRequisicao", new CustomDateEditor(dateFormat, true));
 	}
 	
 	@RequestMapping("listaRequerente")

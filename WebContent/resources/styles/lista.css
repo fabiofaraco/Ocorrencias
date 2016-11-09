@@ -1,5 +1,9 @@
+.page-header h1 {
+	 color: #337ab7;
+}
+
 thead {
-	background-color: #337ab7;
+	background-color: #B78433;
 	color:#FFFFFF;
 }
 
@@ -21,6 +25,7 @@ td {
 	background-color: #B78433;
 	border-color: #6A4F23;
 	color:#FFFFFF;
+	font-size:20px;
 }
 
 .btn-lista:hover,
@@ -32,10 +37,6 @@ td {
 
 .table-responsive {
 	border:none;
-}
-
-.container-fluid {
-	padding: 10px;
 }
 
 .label-control {

@@ -5,55 +5,70 @@
 
 <html>
 	<head>
-		<title>Lista de Usuários</title>
+		<title>Lista de Ocorrências</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1"/>
 		
 		<link href=<c:url value="/resources/bootstrap/css/bootstrap.min.css"/> rel="stylesheet"/>
-		<link href=<c:url value="/resources/styles/menu-principal.css"/> rel="stylesheet"/>
 		<link href=<c:url value="/resources/styles/mensagem.css"/> rel="stylesheet"/>
 		<link href=<c:url value="/resources/styles/lista.css"/> rel="stylesheet"/>
 		<link href=<c:url value="/resources/datatable/css/dataTables.bootstrap.min.css"/> rel="stylesheet"/>			
 	</head>
 	<body>
-		<form id="frm" name="frm" method="post">
-			<c:import url="menu.jsp" />
-			<div class="container-fluid">
-				<div class="page-header">
-					<h1>Lista de Requerentes</h1>
-				</div>
+		<div class="container-fluid">
+			<form id="frm" name="frm" method="post">
 				<c:import url="mensagem.jsp" />
 				<div class="table-responsive">          
 					 <table class="table table-striped table-hover data-table">
 						 <thead>
 							 <tr>
-								 <th>Nome</th>
-								 <th>CPF</th>
-								 <th>Email</th>
-								 <th>Nascimento</th>
+								 <th>Nº Ocorrência</th>
+								 <th>Data</th>
+								 <th>Endereço</th>
 								 <th></th>
 								 <th></th>
 								 <th></th>
 							 </tr>
 						 </thead>
 						 <tbody>
-						 	<c:forEach items="${requerentes}" var="requerente">
+						 	<tr>
+					 			<td>123</td>
+					 			<td>21/09/2016</td>
+					 			<td>Rua grão pará, 405, apt. 102</td>
+					 			
+					 			<td>
+					 				<a class="btn btn-block btn-visualizar" data-id-requerente="${ocorrencia.id}">
+								    	<span class="glyphicon glyphicon-search"></span>
+			     					</a>
+					 			</td>
+					 			<td>
+					 				<a class="btn btn-block btn-alterar" data-id-requerente="${ocorrencia.id}">
+								    	<span class="glyphicon glyphicon-edit"></span>
+			     					</a>
+					 			</td>
+					 			<td>
+					 				<a class="btn btn-block btn-excluir" data-id-requerente="${ocorrencia.id}">
+								    	<span class="glyphicon glyphicon-trash"></span>
+			     					</a>
+					 			</td>
+					 		</tr>
+						 	<c:forEach items="${ocorrencias}" var="ocorrencia">
 						 		<tr>
-						 			<td>${requerente.nome} ${requerente.sobrenome}</td>
-						 			<td>${requerente.cpf}</td>
-						 			<td>${requerente.email}</td>
-						 			<td>${requerente.dataNascimento}</td>
+						 			<td>${ocorrencia.id}</td>
+						 			<td>${ocorrencia.data}</td>
+						 			<td>${ocorrencia.endereco}</td>
+						 			
 						 			<td>
-						 				<a class="btn btn-block btn-visualizar" data-id-requerente="${requerente.id}">
+						 				<a class="btn btn-block btn-visualizar" data-id-requerente="${ocorrencia.id}">
 									    	<span class="glyphicon glyphicon-search"></span>
 				     					</a>
 						 			</td>
 						 			<td>
-						 				<a class="btn btn-block btn-alterar" data-id-requerente="${requerente.id}">
+						 				<a class="btn btn-block btn-alterar" data-id-requerente="${ocorrencia.id}">
 									    	<span class="glyphicon glyphicon-edit"></span>
 				     					</a>
 						 			</td>
 						 			<td>
-						 				<a class="btn btn-block btn-excluir" data-id-requerente="${requerente.id}">
+						 				<a class="btn btn-block btn-excluir" data-id-requerente="${ocorrencia.id}">
 									    	<span class="glyphicon glyphicon-trash"></span>
 				     					</a>
 						 			</td>
@@ -63,7 +78,7 @@
 					 </table>
 				 </div>
 				 
-				 <button id="btnIncluir" type="button" class="btn btn-lista col-xs-12 col-sm-4 col-sm-offset-4">Incluir</button>
+				 <button id="btnIncluir" type="button" class="btn btn-info btn-lista col-xs-12 col-sm-4 col-sm-offset-4">Incluir</button>
 				 
 				 <div class="modal fade" id="delete-modal" role="dialog">
 					<div class="modal-dialog  modal-sm">
@@ -88,7 +103,7 @@
         					</div>
         					<div class="modal-body">
         						<div class="form-group ">
-              						<label for="nome" class="control-label">Nome</label>
+              						<label for="nome" class="label-control">Nome</label>
               						<input type="text" id="nome" name="nome" class="form-control" disabled="disabled"/>
               					</div>
               					
@@ -111,8 +126,8 @@
       					</div>
     				</div>
 				</div>
-			</div>
-		</form>
+			</form>
+		</div>
 	</body>
 	
 	<script src=<c:url value="/resources/jquery/jquery-2.2.2.min.js"/>></script>

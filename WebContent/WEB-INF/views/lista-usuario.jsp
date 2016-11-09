@@ -9,13 +9,18 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1"/>
 		
 		<link href=<c:url value="/resources/bootstrap/css/bootstrap.min.css"/> rel="stylesheet"/>
+		<link href=<c:url value="/resources/styles/menu-principal.css"/> rel="stylesheet"/>
 		<link href=<c:url value="/resources/styles/mensagem.css"/> rel="stylesheet"/>
 		<link href=<c:url value="/resources/styles/lista.css"/> rel="stylesheet"/>
 		<link href=<c:url value="/resources/datatable/css/dataTables.bootstrap.min.css"/> rel="stylesheet"/>			
 	</head>
 	<body>
-		<div class="container-fluid">
-			<form id="frm" name="frm" method="post">
+		<form id="frm" name="frm" method="post">
+			<c:import url="menu.jsp" />
+			<div class="container-fluid">
+				<div class="page-header">
+					<h1>Lista de Usuários</h1>
+				</div>
 				<c:import url="mensagem.jsp" />
 				<div class="table-responsive">          
 					 <table class="table table-striped table-hover data-table">
@@ -58,10 +63,10 @@
 					 </table>
 				 </div>
 				 
-				 <button id="btnIncluir" type="button" class="btn btn-info btn-lista col-xs-12 col-sm-4 col-sm-offset-4">Incluir</button>
+				 <button id="btnIncluir" type="button" class="btn btn-lista col-xs-12 col-sm-4 col-sm-offset-4">Incluir</button>
 				 
 				 <div class="modal fade" id="delete-modal" role="dialog">
-					<div class="modal-dialog  modal-sm">
+					<div class="modal-dialog modal-sm">
 						<div class="modal-content alert">
 							<div class="modal-body">
 								<label class="label-control">Confirma Exclusão?</label>
@@ -75,39 +80,53 @@
 				</div>
 				
 				<div class="modal fade" id="view-modal" role="dialog">
-					<div class="modal-dialog">
-      					<div class="modal-content">
-        					<div class="modal-header">
-					        	<button type="button" class="close" data-dismiss="modal">&times;</button>
-					        	<h3>Visualizar</h3>
-        					</div>
-        					<div class="modal-body">
-        						<div class="form-group ">
-              						<label for="nome" class="label-control">Nome</label>
-              						<input type="text" id="nome" name="nome" class="form-control" disabled="disabled"/>
-              					</div>
-              					
-              					<div class="form-group">
-              						<label for="cpf" class="label-control">CPF</label>
-              						<input type="text" id="cpf" name="cpf" class="form-control" disabled="disabled"/>
-              					</div>
-              					<div class="form-group">
-              						<label for="email" class="label-control">Email</label>
-              						<input type="text" id="email" name="email" class="form-control" disabled="disabled"/>
-              					</div>
-              					<div class="form-group">
-              						<label for="perfil" class="label-control">Perfil</label>
-              						<input type="text" id="perfil" name="perfil" class="form-control" disabled="disabled"/>
-              					</div>
-        					</div>
-        					<div class="modal-footer">
-           						<button type="button" class="btn btn-lista btn-block" data-dismiss="modal">Fechar</button>
-           					</div>
-      					</div>
-    				</div>
+					<div class="modal-dialog modal-lg">
+	     					<div class="modal-content">
+		       					<div class="modal-header">
+						        	<button type="button" class="close" data-dismiss="modal">&times;</button>
+						        	<h3>Visualizar</h3>
+		       					</div>
+		       					<div class="modal-body">
+		       						<div class="row">
+								  		<div class="col-sm-8">
+											<div class="form-group">
+												<label class="descricao" for="nome">Nome</label>
+										  		<input type="text" id="nome" name="nome" class="form-control" disabled="disabled"/>
+										  	</div>
+									  	</div>
+									  	
+									  	<div class="col-sm-4">
+											<div class="form-group">
+												<label class="descricao" for="cpf">CPF</label>
+										  		<input type="text" id="cpf" name="cpf" class="form-control" disabled="disabled"/>
+										  	</div>
+									  	</div>
+								  	</div>
+		       						
+		       						<div class="row">
+								  		<div class="col-sm-6">
+											<div class="form-group">
+												<label class="descricao" for="email">Email</label>
+										  		<input type="text" id="email" name="email" class="form-control" disabled="disabled"/>
+										  	</div>
+									  	</div>
+									  	
+									  	<div class="col-sm-6">
+											<div class="form-group">
+												<label class="descricao" for="perfil">Perfil</label>
+										  		<input type="text" id="perfil" name="perfil" class="form-control" disabled="disabled"/>
+										  	</div>
+									  	</div>
+								  	</div>
+		       					</div>
+	       						<div class="modal-footer">
+	          						<button type="button" class="btn btn-lista btn-block" data-dismiss="modal">Fechar</button>
+	          					</div>
+	     					</div>
+	   				</div>
 				</div>
-			</form>
-		</div>
+			</div>
+		</form>
 	</body>
 	
 	<script src=<c:url value="/resources/jquery/jquery-2.2.2.min.js"/>></script>
