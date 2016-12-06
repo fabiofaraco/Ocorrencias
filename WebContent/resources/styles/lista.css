@@ -1,5 +1,5 @@
-.page-header h1 {
-	 color: #337ab7;
+body{
+	margin-bottom:10px;
 }
 
 thead {
@@ -12,7 +12,13 @@ th {
 }
 
 td {
-	font-size:16px;
+	font-size:17px;
+	background-color: #FFFFFF;
+}
+
+
+.page-header h1 {
+	 color: #337ab7;
 }
 
 .modal-header, h3 {
@@ -41,4 +47,8 @@ td {
 
 .label-control {
 	font-size:17px;
+}
+
+.link-collapse {
+	cursor:pointer;
 }

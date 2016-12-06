@@ -1,6 +1,6 @@
 $(document).ready(function() {
 	
-	$('#btnIncluir').on("click", function(){
+	$('#btnIncluirUsuario').on("click", function(){
 		$('#frm').attr('action', 'cadastroUsuario');
 		$('#frm').submit();
 	});

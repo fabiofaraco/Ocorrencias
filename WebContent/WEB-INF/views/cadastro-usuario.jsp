@@ -15,7 +15,7 @@
 	</head>
 	<body>
 		<form id="frm" name="frm" method="post">
-		<c:import url="menu.jsp" />
+		
 		<div class="container">
 			<div class="page-header">
 				<h1>Cadastro de Usuários</h1>
@@ -48,7 +48,7 @@
 					  		<input type="text" class="form-control" id="cpf" name="cpf" value="${usuario.cpf}"/>
 				  		</div>
 					</div>
-					<div class="col-md-6 col-sm-6">
+					<div class="col-md-5 col-sm-5">
 						<div class="form-group">
 							<label class="descricao" for="email">Email</label>
 					  		<input type="email" class="form-control" id="email" name="email" value="${usuario.email}"/>
