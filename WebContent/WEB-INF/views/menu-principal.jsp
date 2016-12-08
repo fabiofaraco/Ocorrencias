@@ -38,13 +38,16 @@
 		                        <a class="page-scroll" href="#page-top"></a>
 		                    </li>
 		                    <li>
-		                        <a class="page-scroll" href="#about">Usuários</a>
+		                        <a class="page-scroll" href="#usuarios">Usuários</a>
 		                    </li>
 		                    <li>
-		                        <a class="page-scroll" href="#services">Requerentes</a>
+		                        <a class="page-scroll" href="#requerentes">Requerentes</a>
 		                    </li>
 		                    <li>
-		                        <a class="page-scroll" href="#contact">Protocolos</a>
+		                        <a class="page-scroll" href="#protocolos">Protocolos</a>
+		                    </li>
+		                    <li>
+		                        <a class="page-scroll" href="#certidao">Certidão</a>
 		                    </li>
 		                </ul>
 		            </div>
@@ -54,7 +57,7 @@
 		    </nav>
 		
 		    <!-- Intro Section -->
-		    <section id="intro" class="intro-section">
+		    <section id="intro" class="intro-section section-color-1">
 		        <div class="container">
 		            <div class="row">
 		                <div class="col-lg-12">
@@ -64,17 +67,20 @@
 		        </div>
 		    </section>
 		
-		    <section id="about" class="about-section">
+		    <section id="usuarios" class="section section-color-2">
 		    	<c:import url="lista-usuario.jsp" />
 		    </section>
 		
-		    <section id="services" class="services-section">
+		    <section id="requerentes" class="section section-color-1">
 		        <c:import url="lista-requerente.jsp" />
 		    </section>
-		
 		    
-		    <section id="contact" class="contact-section">
+		    <section id="protocolos" class="section section-color-2">
 		        <c:import url="lista-protocolo.jsp" />
+		    </section>
+		    
+		    <section id="certidao" class="section section-color-1">
+		        <c:import url="lista-ocorrencia.jsp" />
 		    </section>
 		</form>
 	</body>

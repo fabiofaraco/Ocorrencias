@@ -3,6 +3,10 @@ h1 {
 	text-align:center;
 }
 
+.modal-body {
+	text-align:left;
+}
+
 .navbar-default {
   background-color: #337ab7;
   border-color: #13426a;
