@@ -44,23 +44,23 @@
 		                        <a class="page-scroll" href="#requerentes">Requerentes</a>
 		                    </li>
 		                    <li>
+		                        <a class="page-scroll" href="#evento">Evento</a>
+		                    </li>
+		                    <li>
 		                        <a class="page-scroll" href="#protocolos">Protocolos</a>
 		                    </li>
 		                    <li>
 		                        <a class="page-scroll" href="#certidao">Certidão</a>
 		                    </li>
 		                </ul>
-		            </div>
-		            <!-- /.navbar-collapse -->
+		            </div>		            
 		        </div>
-		        <!-- /.container -->
 		    </nav>
 		
-		    <!-- Intro Section -->
 		    <section id="intro" class="intro-section section-color-1">
 		        <div class="container">
 		            <div class="row">
-		                <div class="col-lg-12">
+		                <div class="col-sm-offset-3 col-sm-6">
 		                    <h1>Sistema Gerenciador de Ocorrências</h1>
 		                </div>
 		            </div>
@@ -75,12 +75,16 @@
 		        <c:import url="lista-requerente.jsp" />
 		    </section>
 		    
-		    <section id="protocolos" class="section section-color-2">
+		    <section id="evento" class="section section-color-2">
+		        <c:import url="lista-ocorrencia.jsp" />
+		    </section>
+		    
+		    <section id="protocolos" class="section section-color-1">
 		        <c:import url="lista-protocolo.jsp" />
 		    </section>
 		    
-		    <section id="certidao" class="section section-color-1">
-		        <c:import url="lista-ocorrencia.jsp" />
+		    <section id="certidao" class="section section-color-2">
+		        <c:import url="certidao.jsp" />
 		    </section>
 		</form>
 	</body>
