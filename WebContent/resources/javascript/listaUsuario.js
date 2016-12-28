@@ -5,6 +5,8 @@ $(document).ready(function() {
 		$('#frm').submit();
 	});
 	
+//	----------------------------------------------------------------	
+	
 	$('.btn-visualizar').on("click", function(){
 		var id = $(this).attr('data-id-usuario');
 		$.post("carregaVisualizacao", {'id' : id}, function(data) {
@@ -20,6 +22,8 @@ $(document).ready(function() {
 			}
 		});
 	});
+
+//	----------------------------------------------------------------	
 	
 	$('.btn-alterar').on("click", function(){
 		var id = $(this).attr('data-id-usuario');
@@ -27,15 +31,22 @@ $(document).ready(function() {
 		$('#frm').submit();
 	});
 	
+//	----------------------------------------------------------------	
+	
 	$('.btn-excluir').on("click", function(){
 		var id = $(this).attr('data-id-usuario');
 		$('.btn-realiza-exclusao').attr('data-id-usuario', id);
 		$('#delete-modal').modal('show');
 	});
 	
+	
+//	----------------------------------------------------------------
+	
 	$('.btn-realiza-exclusao').on("click", function(){
 		var id = $(this).attr('data-id-usuario');
 		$('#frm').attr('action', 'removerUsuario?id='+id);
 		$('#frm').submit();
 	});
+	
+//	----------------------------------------------------------------
 });
