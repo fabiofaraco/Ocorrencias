@@ -31,5 +31,22 @@ public class UsuarioDao extends GenericDao<Usuario> implements InterfaceUsuarioD
 			manager.close();
 		}
 	}
+	
+	@Override
+	public boolean validarCpf(String cpf, int id) {
+		EntityManager manager = PersistenceUtil.getEntityManager();
+		try {
+			Query query = manager.createQuery("select u from Usuario u where u.cpf = :cpf and u.id != :id");
+			query.setParameter("cpf", cpf);
+			query.setParameter("id", id);
+			query.getSingleResult();
+			
+			return false;
+		} catch(NoResultException e) {
+			return true;
+		} finally {
+			manager.close();
+		}
+	}
 
 }

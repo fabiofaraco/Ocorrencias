@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	
 	$('#btnIncluirUsuario').on("click", function(){
-		$('#frm').attr('action', 'cadastroUsuario');
+		$('#frm').attr('action', 'usuario/cadastro');
 		$('#frm').submit();
 	});
 	
@@ -25,26 +25,26 @@ $(document).ready(function() {
 
 //	----------------------------------------------------------------	
 	
-	$('.btn-alterar').on("click", function(){
+	$('.btn-alterar-usuario').on("click", function(){
 		var id = $(this).attr('data-id-usuario');
-		$('#frm').attr('action', 'carregarUsuario?id='+id);
+		$('#frm').attr('action', 'usuario/carregar?id='+id);
 		$('#frm').submit();
 	});
 	
 //	----------------------------------------------------------------	
 	
-	$('.btn-excluir').on("click", function(){
+	$('.btn-excluir-usuario').on("click", function(){
 		var id = $(this).attr('data-id-usuario');
-		$('.btn-realiza-exclusao').attr('data-id-usuario', id);
-		$('#delete-modal').modal('show');
+		$('.btn-realiza-exclusao-usuario').attr('data-id-usuario', id);
+		$('#modal-excluir-usuario').modal('show');
 	});
 	
 	
 //	----------------------------------------------------------------
 	
-	$('.btn-realiza-exclusao').on("click", function(){
+	$('.btn-realiza-exclusao-usuario').on("click", function(){
 		var id = $(this).attr('data-id-usuario');
-		$('#frm').attr('action', 'removerUsuario?id='+id);
+		$('#frm').attr('action', 'usuario/remover?id='+id);
 		$('#frm').submit();
 	});
 	

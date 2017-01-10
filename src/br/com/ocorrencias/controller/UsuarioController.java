@@ -14,12 +14,12 @@ import br.com.ocorrencias.bean.Perfil;
 import br.com.ocorrencias.bean.Usuario;
 import br.com.ocorrencias.dao.Dao;
 import br.com.ocorrencias.dao.GenericDao;
+import br.com.ocorrencias.dao.InterfaceUsuarioDao;
+import br.com.ocorrencias.dao.UsuarioDao;
 import br.com.ocorrencias.propertyEditor.PerfilPropertyEditor;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 @Controller
+@RequestMapping("usuario")
 public class UsuarioController {
 	
 	@InitBinder
@@ -27,7 +27,9 @@ public class UsuarioController {
 		binder.registerCustomEditor(Perfil.class,  new PerfilPropertyEditor());
 	}
 	
-	@RequestMapping("listaUsuario")
+//	--------------------------------------------------------------------------------------------------------------	
+	
+	@RequestMapping("/lista")
 	public String getForm(Model model) {
 		Dao<Usuario> dao = new GenericDao<Usuario>(Usuario.class);
 		List<Usuario> usuarios = dao.getLista("select u from Usuario u");
@@ -36,8 +38,10 @@ public class UsuarioController {
 		
 		return "lista-usuario";
 	}
+
+//	--------------------------------------------------------------------------------------------------------------	
 	
-	@RequestMapping("cadastroUsuario")
+	@RequestMapping("/cadastro")
 	public String getFormCadastro(Usuario usuario, Model model) {
 		Dao<Perfil> dao = new GenericDao<Perfil>(Perfil.class);
 		List<Perfil> perfis = dao.getLista("select p from Perfil p");
@@ -47,16 +51,20 @@ public class UsuarioController {
 		return "cadastro-usuario";
 	}
 	
-	@RequestMapping("removerUsuario")
+//	--------------------------------------------------------------------------------------------------------------	
+	
+	@RequestMapping("/remover")
 	public String removerUsuario(Usuario usuario, RedirectAttributes redirectAttributes) {
 		Dao<Usuario> dao = new GenericDao<Usuario>(Usuario.class);
 		dao.remover(usuario.getId());
 		
 		redirectAttributes.addFlashAttribute("msgSuccess", "Usuário removido com sucesso");
-		return "redirect:listaUsuario";
+		return "redirect:/menuPrincipal";
 	}
 	
-	@RequestMapping("salvarUsuario")
+//	--------------------------------------------------------------------------------------------------------------	
+	
+	@RequestMapping("/salvar")
 	public String salvarUsuario(Usuario usuario, RedirectAttributes redirectAttributes) {
 		Dao<Usuario> dao = new GenericDao<Usuario>(Usuario.class);
 		String msg = "";
@@ -70,11 +78,12 @@ public class UsuarioController {
 		}
 		
 		redirectAttributes.addFlashAttribute("msgSuccess", msg);
-		return "redirect:listaUsuario";
+		return "redirect:menuPrincipal";
 	}
 	
+//	--------------------------------------------------------------------------------------------------------------	
 	
-	@RequestMapping("carregarUsuario")
+	@RequestMapping("/carregar")
 	public String carregarUsuario(Usuario usuario, Model model) {
 		Dao<Usuario> dao = new GenericDao<Usuario>(Usuario.class);
 		
@@ -87,20 +96,18 @@ public class UsuarioController {
 		return "cadastro-usuario";
 	}
 	
-	@RequestMapping("carregaVisualizacao")
-	public @ResponseBody String visualizarUsuario(int id) {
-		Dao<Usuario> dao = new GenericDao<Usuario>(Usuario.class);
-		Usuario usuario = dao.buscar(id);
-		ObjectMapper mapper = new ObjectMapper();
+//	--------------------------------------------------------------------------------------------------------------	
+	
+	@RequestMapping("/validaCpf")
+	public @ResponseBody String validarCpf(String cpf, int id) {
+		InterfaceUsuarioDao dao = new UsuarioDao();
 		
-		String usuarioJson = "";
-		try {
-			usuarioJson = mapper.writeValueAsString(usuario);
-		} catch (JsonProcessingException e) {
-			usuarioJson = "";
-			e.printStackTrace();
-		}
-		
-		return usuarioJson;
+		if(!dao.validarCpf(cpf, id)) {
+			return "O CPF digitado já está cadastrado no sistema";
+		} 
+		return "";
 	}
+	
+//	--------------------------------------------------------------------------------------------------------------	
+	
 }

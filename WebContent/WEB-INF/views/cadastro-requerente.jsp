@@ -3,6 +3,7 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <html>
 	<head>
@@ -27,13 +28,14 @@
 				  	</div>
 				  	
 				  	<div class="row">
-				  		<div class="col-md-6 col-sm-6">
+				  		<div id="divNome" class="col-md-6 col-sm-6">
 							<div class="form-group">
 								<label class="descricao" for="nome">Nome</label>
 						  		<input type="text" class="form-control" id="nome" name="nome" value="${requerente.nome}">
 						  	</div>
 					  	</div>
-					  	<div class="col-md-6 col-sm-6">
+					  	
+					  	<div id="divSobrenome" class="col-md-6 col-sm-6">
 						  	<div class="form-group">
 						  		<label class="descricao" for="sobrenome">Sobrenome</label>
 						  		<input type="text" class="form-control" id="sobrenome" name="sobrenome" value="${requerente.sobrenome}"/>
@@ -42,21 +44,21 @@
 				  	</div>
 				  	
 				  	<div class="row">
-				  		<div class="col-md-3 col-sm-3">
+				  		<div id="divCpf" class="col-md-3 col-sm-3">
 				  			<div class="form-group">
 						  		<label class="descricao" for="cpf">CPF</label>
-						  		<input type="text" class="form-control" id="cpf" name="cpf" value="${requerente.cpf}"/>
+						  		<input type="text" class="form-control mascara-cpf" id="cpf" name="cpf" value="${requerente.cpf}"/>
 						  	</div>
 				  		</div>
 				  		
-				  		<div class="col-md-4 col-sm-3">
+				  		<div id="divNascimento" class="col-md-4 col-sm-3">
 						  	<div class="form-group">
 						  		<label class="descricao" for="dataNascimento">Nascimento</label>
-						  		<input type="text" class="form-control" id="dataNascimento" name="dataNascimento" value="${requerente.dataNascimento}"/>
+						  		<input type="text" class="form-control mascara-data" id="dataNascimento" name="dataNascimento" value="<fmt:formatDate pattern="dd/MM/yyyy" value="${requerente.dataNascimento}"/>" />
 						  	</div>
 				  		</div>
 				  		
-				  		<div class="col-md-5 col-sm-6">
+				  		<div id="divEmail" class="col-md-5 col-sm-6">
 				  			<div class="form-group">
 						  		<label class="descricao" for="email">Email</label>
 						  		<input type="email" class="form-control" id="email" name="email" value="${requerente.email}"/>
@@ -72,37 +74,32 @@
 				  		<div class="col-md-7 col-sm-6">
 				  			<div class="form-group">
 						  		<label class="descricao" for="logradouro">Logradouro</label>
-						  		<input type="text" class="form-control" id="logradouro" name="logradouro" value="${requerente.endereco.logradouro}"/>
+						  		<input type="text" class="form-control" id="logradouro" name="endereco.logradouro" value="${requerente.endereco.logradouro}"/>
 						  	</div>
 				  		</div>
 				  		
 				  		<div class="col-md-5 col-sm-6">
 				  			<div class="form-group">
 						  		<label class="descricao" for="complemento">Complemento</label>
-						  		<input type="text" class="form-control" id="complemento" name="complemento" value="${requerente.endereco.complemento}"/>
+						  		<input type="text" class="form-control" id="complemento" name="endereco.complemento" value="${requerente.endereco.complemento}"/>
 						  	</div>
 				  		</div>
 				  	</div>
 				  	
 				  	<div class="row">
-				  		<div class="col-md-3 col-sm-2">
-				  			<div class="form-group">
-						  		<label class="descricao" for="uf">UF</label>
-						  		<input type="text" class="form-control" id="uf" name="uf" value="${requerente.endereco.complemento}"/>
-						  	</div>
-				  		</div>
+				  		
 				  		
 				  		<div class="col-md-5 col-sm-6">
 				  			<div class="form-group">
 						  		<label class="descricao" for="cidade">Cidade</label>
-						  		<input type="text" class="form-control" id="cidade" name="cidade" value="${requerente.endereco.cidade}"/>
+						  		<input type="text" class="form-control" id="cidade" name="endereco.cidade" value="${requerente.endereco.cidade}"/>
 						  	</div>
 				  		</div>
 				  		
 				  		<div class="col-md-4 col-sm-4">
 				  			<div class="form-group">
 						  		<label class="descricao" for="cidade">Bairro</label>
-						  		<input type="text" class="form-control" id="bairro" name="bairro" value="${requerente.endereco.bairro}"/>
+						  		<input type="text" class="form-control" id="bairro" name="endereco.bairro" value="${requerente.endereco.bairro}"/>
 						  	</div>
 				  		</div>
 				  	</div>
@@ -115,14 +112,14 @@
 				  		<div class="col-md-3 col-sm-6">
 				  			<div class="form-group">
 						  		<label class="descricao" for="residencial">Residencial</label>
-						  		<input type="text" class="form-control" id="residencial" name="residencial" value="${requerente.telefone.residencial}"/>
+						  		<input type="text" class="form-control mascara-telefone" id="residencial" name="telefone.residencial" value="${requerente.telefone.residencial}"/>
 						  	</div>
 				  		</div>
 				  		
 				  		<div class="col-md-3 col-sm-6">
 				  			<div class="form-group">
 						  		<label class="descricao" for="celular">Celular</label>
-						  		<input type="text" class="form-control" id="celular" name="celular" value="${requerente.telefone.celular}"/>
+						  		<input type="text" class="form-control mascara-celular" id="celular" name="telefone.celular" value="${requerente.telefone.celular}"/>
 						  	</div>
 				  		</div>
 				  	</div>
@@ -145,4 +142,5 @@
 	<script src=<c:url value="/resources/bootstrap/js/bootstrap.min.js"/>></script>
 	<script src=<c:url value="/resources/javascript/mensagem.js"/>></script>
 	<script src=<c:url value="/resources/javascript/cadastroRequerente.js"/>></script>
+	<script src=<c:url value="/resources/javascript/util.js"/>></script>
 </html>

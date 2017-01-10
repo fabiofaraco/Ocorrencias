@@ -39,12 +39,12 @@
 				     					</a>
 						 			</td>
 						 			<td>
-						 				<a class="btn btn-block btn-alterar" data-id-requerente="${requerente.id}">
+						 				<a class="btn btn-block btn-alterar-requerente" data-id-requerente="${requerente.id}">
 									    	<span class="glyphicon glyphicon-edit"></span>
 				     					</a>
 						 			</td>
 						 			<td>
-						 				<a class="btn btn-block btn-excluir" data-id-requerente="${requerente.id}">
+						 				<a class="btn btn-block btn-excluir-requerente" data-id-requerente="${requerente.id}">
 									    	<span class="glyphicon glyphicon-trash"></span>
 				     					</a>
 						 			</td>
@@ -54,6 +54,24 @@
 					 </table>
 				 </div>
 				 <button id="btnIncluirRequerente" type="button" class="btn btn-lista col-xs-12 col-sm-4 col-sm-offset-4">Incluir</button>
+			</div>
+			
+			<div class="modal fade" id="modal-excluir-requerente" role="dialog">
+				<div class="modal-dialog modal-sm">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h3 class="modal-title">Confirmação</h3>
+						</div>
+						<div class="modal-body">
+							<h4>Deseja excluir o requerente selecionado?</h4>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-lista btn-realiza-exclusao-requerente">Excluir</button>
+							<button type="button" class="btn btn-lista" data-dismiss="modal">Fechar</button>
+						</div>
+					</div>    
+				</div>
 			</div>
 		</div>			
 	</div>

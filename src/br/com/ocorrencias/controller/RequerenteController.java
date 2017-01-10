@@ -16,11 +16,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import br.com.ocorrencias.bean.Requerente;
 import br.com.ocorrencias.dao.Dao;
 import br.com.ocorrencias.dao.GenericDao;
+import br.com.ocorrencias.dao.InterfaceRequerenteDao;
+import br.com.ocorrencias.dao.RequerenteDao;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
+@RequestMapping("requerente")
 public class RequerenteController {
 	
 	@InitBinder
@@ -33,7 +36,9 @@ public class RequerenteController {
 		binder.registerCustomEditor(Date.class, "dataRequisicao", new CustomDateEditor(dateFormat, true));
 	}
 	
-	@RequestMapping("listaRequerente")
+//	---------------------------------------------------------------------------------------------------------------------	
+	
+	@RequestMapping("/lista")
 	public String getFormListaRequerente(Model model) {
 		Dao<Requerente> dao = new GenericDao<Requerente>(Requerente.class);
 		List<Requerente> requerentes = dao.getLista("select r from Requerente r");
@@ -43,22 +48,28 @@ public class RequerenteController {
 		return "lista-requerente";
 	}
 	
-	@RequestMapping("cadastroRequerente")
+//	---------------------------------------------------------------------------------------------------------------------
+	
+	@RequestMapping("/cadastro")
 	public String getFormCadastroRequerente(Requerente requerente, Model model) {
 		
 		return "cadastro-requerente";
 	}
 	
-	@RequestMapping("removerRequerente")
+//	---------------------------------------------------------------------------------------------------------------------
+	
+	@RequestMapping("/remover")
 	public String removerRequerente(Requerente requerente, RedirectAttributes redirectAttributes) {
 		Dao<Requerente> dao = new GenericDao<Requerente>(Requerente.class);
 		dao.remover(requerente.getId());
 		
 		redirectAttributes.addFlashAttribute("msgSuccess", "Requerente removido com sucesso");
-		return "redirect:listaRequerente";
+		return "redirect:/menuPrincipal";
 	}
 	
-	@RequestMapping("salvarRequerente")
+//	---------------------------------------------------------------------------------------------------------------------
+	
+	@RequestMapping("/salvar")
 	public String salvarRequerente(Requerente requerente, RedirectAttributes redirectAttributes) {
 		Dao<Requerente> dao = new GenericDao<Requerente>(Requerente.class);
 		String msg = "";
@@ -70,13 +81,14 @@ public class RequerenteController {
 			dao.alterar(requerente);
 			msg = "O requerente "+requerente.getNome()+" foi alterado com sucesso";
 		}
-		
+
 		redirectAttributes.addFlashAttribute("msgSuccess", msg);
-		return "redirect:listaRequerente";
+		return "redirect:/menuPrincipal";
 	}
 	
+//	---------------------------------------------------------------------------------------------------------------------
 	
-	@RequestMapping("carregarRequerente")
+	@RequestMapping("/carregar")
 	public String carregarRequerente(Requerente requerente, Model model) {
 		Dao<Requerente> dao = new GenericDao<Requerente>(Requerente.class);
 		
@@ -84,6 +96,8 @@ public class RequerenteController {
 		
 		return "cadastro-requerente";
 	}
+	
+//	---------------------------------------------------------------------------------------------------------------------
 	
 	@RequestMapping("carregaVisualizacaoRequerente")
 	public @ResponseBody String visualizarRequerente(int id) {
@@ -100,5 +114,17 @@ public class RequerenteController {
 		}
 		
 		return requerenteJson;
+	}
+	
+//	---------------------------------------------------------------------------------------------------------------------
+	
+	@RequestMapping("/validaCpf")
+	public @ResponseBody String validarCpf(String cpf, int id) {
+		InterfaceRequerenteDao dao = new RequerenteDao();
+		
+		if(!dao.validarCpf(cpf, id)) {
+			return "O CPF digitado já está cadastrado no sistema";
+		} 
+		return "";
 	}
 }

@@ -24,7 +24,7 @@ public class Usuario {
 	private String sobrenome;
 	
 	@Column(name="CPF")
-	private Long cpf;
+	private String cpf;
 	
 	@Column(name="EMAIL")
 	private String email;
@@ -60,11 +60,11 @@ public class Usuario {
 		this.sobrenome = sobrenome;
 	}
 
-	public Long getCpf() {
+	public String getCpf() {
 		return cpf;
 	}
 
-	public void setCpf(Long cpf) {
+	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
 

@@ -1,15 +1,45 @@
 $(document).ready(function() {
+	$("#cpf").mask("999.999.999-99");
+	
+	$("#cpf").keypress(function (e) {
+		if(e.which != 8 
+				&& e.which != 0 
+				&& (e.which < 48 || e.which > 57)) {
+			return false;
+		}
+	});
+	
+	$("#cpf").focusout(function(){
+		if($("#cpf").val() != "") {
+			if(validaCPF($('#cpf').val())) {
+				$.post("usuario/validaCpf", {'cpf' : $("#cpf").val(), 'id' : $("#id").val()} ,function(data) {
+					if(data != "") {
+						$('.msg-warning').html('O CPF digitado já está cadastrado no sistema');
+						$('#warning').css("display", "block");
+						$("#cpf").val("");
+						$("#divCpf").addClass("has-error has-feedback")
+					} else {
+						$('#warning').css("display", "none");
+						$("#divCpf").removeClass("has-error has-feedback")
+					}
+				});
+			} else {
+				$('.msg-warning').html('Por favor digite um CPF válido');
+				$('#warning').css("display", "block");
+				$("#cpf").focus();
+				$("#divCpf").addClass("has-error has-feedback")
+			}
+		}
+    });	
+	
 	$('#btnSalvar').click(function(){
 		if(validaCampos()) {
-			$('#frm').attr('action', 'salvarUsuario');
+			$('#frm').attr('action', 'salvar');
 			$('#frm').submit();
 		}
 	});
 	
-	$("#cpf").mask("999.999.999-99");
-	
 	/* FUNÇÕES */
-	
 	function validaCampos() {
 		$("#divNome").removeClass("has-error has-feedback");
 		$("#divSobrenome").removeClass("has-error has-feedback");
@@ -113,7 +143,6 @@ $(document).ready(function() {
 		
 		return true;
 	}
-	
 	
 	function validaCPF(cpf) { 
 		strCPF = cpf; 
