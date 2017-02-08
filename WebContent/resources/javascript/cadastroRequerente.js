@@ -34,9 +34,43 @@ $(document).ready(function() {
 		}
 	});
 	
+	$('#estado').on('change', function () { 
+		var idEstado = $('#estado').val(); 
+		
+		var select = $('#cidade');			
+		select.find('option').remove();
+		$('<option>').val("").text("Selecione...").appendTo(select);
+		
+		$.post("carregaCidade", {'idEstado' : idEstado} ,function(data) {
+			if(data != "") {
+				$.each(JSON.parse(data), function(index, value) {
+		        	$('<option>').val(value.id).text(value.nome).appendTo(select);
+		        });
+			}
+		});
+	});
+	
 	/* FUNÇÕES */
 	function validaCampos() {
+		if(!validaCampo("nome", "divNome", "Nome")) {
+			return false;
+		}
 		
+		if(!validaCampo("sobrenome", "divSobrenome", "Sobrenome")) {
+			return false;
+		}
+		
+		if(!validaCampo("cpf", "divCpf", "CPF")) {
+			return false;
+		}
+		
+		if(!validaCampo("dataNascimento", "divNascimento", "Data de Nascimento")) {
+			return false;
+		}
+		
+		if(!validaCampo("email", "divEmail", "Email")) {
+			return false;
+		}
 		
 		return true;
 	}

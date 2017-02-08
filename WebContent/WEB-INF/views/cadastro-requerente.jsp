@@ -71,38 +71,54 @@
 				  	</div>
 				  	
 				  	<div class="row">
-				  		<div class="col-md-7 col-sm-6">
-				  			<div class="form-group">
-						  		<label class="descricao" for="logradouro">Logradouro</label>
-						  		<input type="text" class="form-control" id="logradouro" name="endereco.logradouro" value="${requerente.endereco.logradouro}"/>
+					  		<div id="divEndereco" class="col-md-5 col-sm-3">
+								<div class="form-group">
+									<label class="descricao" for="logradouro">Endereço</label>
+							  		<input type="text" class="form-control" id="logradouro" name="endereco.logradouro" value="${requerente.endereco.logradouro}">
+							  	</div>
 						  	</div>
-				  		</div>
-				  		
-				  		<div class="col-md-5 col-sm-6">
-				  			<div class="form-group">
-						  		<label class="descricao" for="complemento">Complemento</label>
-						  		<input type="text" class="form-control" id="complemento" name="endereco.complemento" value="${requerente.endereco.complemento}"/>
+						  	
+						  	<div id="divComplemento" class="col-md-4 col-sm-6">
+							  	<div class="form-group">
+							  		<label class="descricao" for="complemento">Complemento</label>
+							  		<input type="text" class="form-control" id="complemento" name="endereco.complemento" value="${requerente.endereco.complemento}"/>
+							  	</div>
 						  	</div>
-				  		</div>
-				  	</div>
+						  	
+						  	<div class="col-md-3 col-sm-6">
+					  			<div class="form-group">
+							  		<label class="descricao" for="complemento">Bairro</label>
+							  		<input type="text" class="form-control" id="complemento" name="endereco.bairro" value="${requerente.endereco.bairro}"/>
+							  	</div>
+					  		</div>
+					  	</div>
 				  	
 				  	<div class="row">
-				  		
-				  		
-				  		<div class="col-md-5 col-sm-6">
-				  			<div class="form-group">
-						  		<label class="descricao" for="cidade">Cidade</label>
-						  		<input type="text" class="form-control" id="cidade" name="endereco.cidade" value="${requerente.endereco.cidade}"/>
+					  		<div class="col-md-5 col-sm-3">
+								<div class="form-group">
+									<label class="descricao" for="estado">Estado</label>
+									
+									<select class="form-control" id="estado" name="endereco.cidade.estado">
+									    <option value=""><c:out value="Selecione..."/></option>
+									    <c:forEach items="${estados}" var="es">
+							  				<option value="${es.id}" ${requerente.endereco.cidade.estado.id == es.id? 'selected' : ''}><c:out value="${es.sigla} - ${es.nome}"/></option>
+							  			</c:forEach>
+									</select>
+							  	</div>
 						  	</div>
-				  		</div>
-				  		
-				  		<div class="col-md-4 col-sm-4">
-				  			<div class="form-group">
-						  		<label class="descricao" for="cidade">Bairro</label>
-						  		<input type="text" class="form-control" id="bairro" name="endereco.bairro" value="${requerente.endereco.bairro}"/>
+						  	<div class="col-md-5 col-sm-6">
+							  	<div class="form-group">
+							  		<label class="descricao" for="cidade">Cidade</label>
+							  		
+							  		<select class="form-control" id="cidade" name="endereco.cidade">
+									    <option value=""><c:out value="Selecione..."/></option>
+									    <c:forEach items="${cidades}" var="c">
+							  				<option value="${c.id}" ${requerente.endereco.cidade.id == c.id? 'selected' : ''}><c:out value="${c.nome}"/></option>
+							  			</c:forEach>
+									</select>
+							  	</div>
 						  	</div>
-				  		</div>
-				  	</div>
+					  	</div>
 				  	
 				  	<div class="form-group">
 				  		<label class="titulo" for="telefone">Telefone</label>

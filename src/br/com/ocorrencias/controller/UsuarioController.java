@@ -78,7 +78,7 @@ public class UsuarioController {
 		}
 		
 		redirectAttributes.addFlashAttribute("msgSuccess", msg);
-		return "redirect:menuPrincipal";
+		return "redirect:/menuPrincipal";
 	}
 	
 //	--------------------------------------------------------------------------------------------------------------	

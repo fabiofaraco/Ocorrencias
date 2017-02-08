@@ -13,11 +13,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import br.com.ocorrencias.bean.Cidade;
+import br.com.ocorrencias.bean.Estado;
 import br.com.ocorrencias.bean.Requerente;
 import br.com.ocorrencias.dao.Dao;
+import br.com.ocorrencias.dao.EnderecoDao;
 import br.com.ocorrencias.dao.GenericDao;
+import br.com.ocorrencias.dao.InterfaceEnderecoDao;
 import br.com.ocorrencias.dao.InterfaceRequerenteDao;
 import br.com.ocorrencias.dao.RequerenteDao;
+import br.com.ocorrencias.propertyEditor.CidadePropertyEditor;
+import br.com.ocorrencias.propertyEditor.EstadoPropertyEditor;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -34,6 +40,9 @@ public class RequerenteController {
 		
 		binder.registerCustomEditor(Date.class, "dataNascimento", new CustomDateEditor(dateFormat, true));
 		binder.registerCustomEditor(Date.class, "dataRequisicao", new CustomDateEditor(dateFormat, true));
+		
+		binder.registerCustomEditor(Estado.class,  new EstadoPropertyEditor());
+		binder.registerCustomEditor(Cidade.class,  new CidadePropertyEditor());
 	}
 	
 //	---------------------------------------------------------------------------------------------------------------------	
@@ -52,6 +61,10 @@ public class RequerenteController {
 	
 	@RequestMapping("/cadastro")
 	public String getFormCadastroRequerente(Requerente requerente, Model model) {
+		Dao<Estado> daoEstados = new GenericDao<Estado>(Estado.class);
+		List<Estado> estados = daoEstados.getLista("select e from Estado e");
+		
+		model.addAttribute("estados", estados);
 		
 		return "cadastro-requerente";
 	}
@@ -92,7 +105,18 @@ public class RequerenteController {
 	public String carregarRequerente(Requerente requerente, Model model) {
 		Dao<Requerente> dao = new GenericDao<Requerente>(Requerente.class);
 		
-		model.addAttribute("requerente", dao.buscar(requerente.getId()));
+		Requerente r = dao.buscar(requerente.getId());
+		
+		Dao<Estado> daoEstados = new GenericDao<Estado>(Estado.class);
+		List<Estado> estados = daoEstados.getLista("select e from Estado e");
+		
+		model.addAttribute("estados", estados);
+		model.addAttribute("requerente", r);
+		
+		InterfaceEnderecoDao daoEndereco = new EnderecoDao();
+		List<Cidade> cidades = daoEndereco.carregarCidade(r.getEndereco().getCidade().getEstado().getId());
+		
+		model.addAttribute("cidades", cidades);
 		
 		return "cadastro-requerente";
 	}
@@ -124,7 +148,27 @@ public class RequerenteController {
 		
 		if(!dao.validarCpf(cpf, id)) {
 			return "O CPF digitado já está cadastrado no sistema";
-		} 
+		}
+		
+		return "";
+	}
+
+//	---------------------------------------------------------------------------------------------------------------------
+	
+	@RequestMapping("/carregaCidade")
+	public @ResponseBody String carregarCidades(int idEstado) {
+		ObjectMapper mapper = new ObjectMapper();
+		InterfaceEnderecoDao dao = new EnderecoDao();
+		List<Cidade> cidades = dao.carregarCidade(idEstado);
+		
+		try {
+			String returnJson = mapper.writeValueAsString(cidades);
+			
+			return returnJson;
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		
 		return "";
 	}
 }

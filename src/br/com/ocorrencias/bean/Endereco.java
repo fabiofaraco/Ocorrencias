@@ -2,6 +2,8 @@ package br.com.ocorrencias.bean;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Embeddable
 public class Endereco {
@@ -12,8 +14,13 @@ public class Endereco {
 	@Column(name="COMPLEMENTO")
 	private String complemento;
 	
-	@Column(name="CIDADE")
-	private String cidade;
+	//@ManyToOne
+	//@JoinColumn(name="ID_ESTADO")
+	//private Estado estado = new Estado();
+	
+	@ManyToOne
+	@JoinColumn(name="ID_CIDADE")
+	private Cidade cidade = new Cidade();
 	
 	@Column(name="BAIRRO")
 	private String bairro;
@@ -30,16 +37,17 @@ public class Endereco {
 	public void setComplemento(String complemento) {
 		this.complemento = complemento;
 	}
-	public String getCidade() {
-		return cidade;
-	}
-	public void setCidade(String cidade) {
-		this.cidade = cidade;
-	}
 	public String getBairro() {
 		return bairro;
 	}
 	public void setBairro(String bairro) {
 		this.bairro = bairro;
 	}
+	public Cidade getCidade() {
+		return cidade;
+	}
+	public void setCidade(Cidade cidade) {
+		this.cidade = cidade;
+	}
+
 }

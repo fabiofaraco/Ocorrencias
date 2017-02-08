@@ -2,6 +2,7 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <html>
 	<head>
@@ -19,403 +20,104 @@
 				<div class="page-header">
 					<h1>Cadastro de Ocorrências</h1>
 				</div>
-			
+				<c:import url="mensagem.jsp" />
 				
-					<ul class="nav nav-pills">
-					    <li class="active"><a data-toggle="pill" href="#dadosEvento">Dados Evento</a></li>
-					    <li><a data-toggle="pill" href="#quadroHorarios">Quadro de Horários</a></li>
-					    <li><a data-toggle="pill" href="#acaoDeSocorro">Ação de Socorro</a></li>
-					    <li><a data-toggle="pill" href="#responsavel">Responsável</a></li>
-					</ul>
-					
-					<div class="tab-content">
-						<div id="dadosEvento" class="tab-pane fade in active">
-							<div class="well">
+				<div class="well">
+					<div class="form-group">
+				  		<label class="titulo">Dados da Ocorrência</label>
+				  		
+				  		<div class="row">
+					  		<div id="divData" class="col-md-3 col-sm-3">
 								<div class="form-group">
-							  		<label class="titulo" for="residencial">OBM</label>
+									<label class="descricao" for="data">Data</label>
+							  		<input type="text" class="form-control mascara-data" id="data" name="data" value="<fmt:formatDate pattern="dd/MM/yyyy" value="${ocorrencia.data}"/>" />
 							  	</div>
-							
-								<div class="row">
-							  		<div class="col-md-2 col-sm-3">
-										<div class="form-group">
-											<label class="descricao" for="nome">Unidade</label>
-									  		<input type="text" class="form-control" id="nome" name="nome" value="${usuario.nome}">
-									  	</div>
-								  	</div>
-								  	<div class="col-md-4 col-sm-6">
-									  	<div class="form-group">
-									  		<label class="descricao" for="sobrenome">Bairro</label>
-									  		<input type="text" class="form-control" id="sobrenome" name="sobrenome" value="${usuario.sobrenome}"/>
-									  	</div>
-								  	</div>
-							  	</div>
-							  	
+						  	</div>
+						  	
+						  	<div id="divNatureza" class="col-md-4 col-sm-6">
 							  	<div class="form-group">
-							  		<label class="titulo" for="residencial">Dados do Evento</label>
+							  		<label class="descricao" for="sobrenome">Natureza da Ocorrência</label>
+							  		
+							  		<select class="form-control" id="evento" name="evento">
+									    <option value=""><c:out value="Selecione..."/></option>
+									    <c:forEach items="${eventos}" var="e">
+							  				<option value="${e.id}" ${ocorrencia.evento.id == e.id ? 'selected' : ''}><c:out value="${e.descricao}"/></option>
+							  			</c:forEach>
+									</select>
 							  	</div>
-							  	
-							  	<div class="row">
-									<div class="col-md-6">
-										<div class="form-group">
-											<label class="descricao" for="perfil">Principal Evento</label>
-									  		<select class="form-control" id="perfil" name="perfil">
-											    <option value=""><c:out value="Selecione..."/></option>
-											    <c:forEach items="${perfis}" var="p">
-									  				<option value="${p.id}" ${usuario.perfil.id == p.id ? 'selected' : ''}><c:out value="${p.descricao}"/></option>
-									  			</c:forEach>
-											</select>
-										</div>
-									</div>
+						  	</div>
+					  	</div>
+					  	
+					  	<div class="row">
+					  		<div id="divEndereco" class="col-md-5 col-sm-3">
+								<div class="form-group">
+									<label class="descricao" for="logradouro">Endereço</label>
+							  		<input type="text" class="form-control" id="logradouro" name="endereco.logradouro" value="${ocorrencia.endereco.logradouro}">
+							  	</div>
+						  	</div>
+						  	
+						  	<div id="divComplemento" class="col-md-4 col-sm-6">
+							  	<div class="form-group">
+							  		<label class="descricao" for="complemento">Complemento</label>
+							  		<input type="text" class="form-control" id="complemento" name="endereco.complemento" value="${ocorrencia.endereco.complemento}"/>
+							  	</div>
+						  	</div>
+						  	
+						  	<div class="col-md-3 col-sm-6">
+					  			<div class="form-group">
+							  		<label class="descricao" for="complemento">Bairro</label>
+							  		<input type="text" class="form-control" id="complemento" name="endereco.bairro" value="${requerente.endereco.bairro}"/>
+							  	</div>
+					  		</div>
+					  	</div>
+					  	
+					  	
+					  	<div class="row">
+					  		<div class="col-md-5 col-sm-3">
+								<div class="form-group">
+									<label class="descricao" for="estado">Estado</label>
 									
-									<div class="col-xs-6 col-md-3 col-sm-6">
-									  	<div class="form-group">
-									  		<label class="descricao" for="sobrenome">Vítimas Fatais</label>
-									  		<input type="text" class="form-control" id="sobrenome" name="sobrenome" value="${usuario.sobrenome}"/>
-									  	</div>
-								  	</div>
-								  	
-								  	<div class="col-xs-6 col-md-3 col-sm-6">
-									  	<div class="form-group">
-									  		<label class="descricao" for="sobrenome">Vítimas Não Fatais</label>
-									  		<input type="text" class="form-control" id="sobrenome" name="sobrenome" value="${usuario.sobrenome}"/>
-									  	</div>
-								  	</div>
-								</div>
-								
-								<div class="row">
-									<div class="col-md-6">
-									  	<div class="form-group">
-									  		<label class="descricao" for="sobrenome">Chefe da Equipe</label>
-									  		<input type="text" class="form-control" id="sobrenome" name="sobrenome" value="${usuario.sobrenome}"/>
-									  	</div>
-								  	</div>
-								</div>
-								
-								<div class="row">
-									<div class="col-md-5">
-									  	<div class="form-group">
-									  		<label class="descricao" for="sobrenome">Espécie do Bem</label>
-									  		<input type="text" class="form-control" id="sobrenome" name="sobrenome" value="${usuario.sobrenome}"/>
-									  	</div>
-								  	</div>
-								  	
-								  	<div class="col-md-5">
-									  	<div class="form-group">
-									  		<label class="descricao" for="sobrenome">Finalidade do Bem</label>
-									  		<input type="text" class="form-control" id="sobrenome" name="sobrenome" value="${usuario.sobrenome}"/>
-									  	</div>
-								  	</div>
-								</div>
-								
-								<div class="form-group">
-							  		<label class="titulo" for="residencial">Local do Evento</label>
+									<select class="form-control" id="estado" name="endereco.cidade.estado">
+									    <option value=""><c:out value="Selecione..."/></option>
+									    <c:forEach items="${estados}" var="es">
+							  				<option value="${es.id}" ${ocorrencia.endereco.cidade.estado.id == es.id? 'selected' : ''}><c:out value="${es.sigla} - ${es.nome}"/></option>
+							  			</c:forEach>
+									</select>
 							  	</div>
-							  	
-							  	<div class="row">
-							  		<div class="col-md-4 col-sm-4">
-							  			<div class="form-group">
-									  		<label class="descricao" for="cidade">Logradouro</label>
-									  		<input type="text" class="form-control" id="cidade" name="cidade" value="${requerente.endereco.cidade}"/>
-									  	</div>
-							  		</div>
+						  	</div>
+						  	<div class="col-md-5 col-sm-6">
+							  	<div class="form-group">
+							  		<label class="descricao" for="cidade">Cidade</label>
 							  		
-							  		<div class="col-md-4 col-sm-4">
-							  			<div class="form-group">
-									  		<label class="descricao" for="cidade">Bairro</label>
-									  		<input type="text" class="form-control" id="bairro" name="bairro" value="${requerente.endereco.bairro}"/>
-									  	</div>
-							  		</div>
-							  		
-							  		<div class="col-md-4 col-sm-4">
-							  			<div class="form-group">
-									  		<label class="descricao" for="cidade">Município</label>
-									  		<input type="text" class="form-control" id="bairro" name="bairro" value="${requerente.endereco.bairro}"/>
-									  	</div>
-							  		</div>
+							  		<select class="form-control" id="cidade" name="endereco.cidade">
+									    <option value=""><c:out value="Selecione..."/></option>
+									    <c:forEach items="${cidades}" var="c">
+							  				<option value="${c.id}" ${ocorrencia.endereco.cidade.id == c.id? 'selected' : ''}><c:out value="${c.nome}"/></option>
+							  			</c:forEach>
+									</select>
 							  	</div>
-							  	
-							</div>
-						</div>
-						
-						<div id="quadroHorarios" class="tab-pane fade">
-							<div class="well">
-								<div class="form-group">
-							  		<label class="titulo" for="residencial">Quadro de Horários</label>
-							  	</div>
-							  	
-							  	<div class="row">
-								  	<div class="col-md-12 col-sm-12">
-							  			<div class="form-group">
-									  		<label class="descricao" for="cidade">Recebimento do Aviso</label>
-									  		<input type="text" class="form-control" id="bairro" name="bairro" value="${requerente.endereco.bairro}"/>
-									  	</div>
-							  		</div>
-						  		</div>
-						  		
-						  		<div class="row">
-							  		<div class="col-md-12 col-sm-12">
-							  			<div class="form-group">
-									  		<label class="descricao" for="cidade">Saída da Unidade</label>
-									  		<input type="text" class="form-control" id="bairro" name="bairro" value="${requerente.endereco.bairro}"/>
-									  	</div>
-							  		</div>
-						  		</div>
-						  		
-						  		<div class="row">
-							  		<div class="col-md-12 col-sm-12">
-							  			<div class="form-group">
-									  		<label class="descricao" for="cidade">Chegada ao Local</label>
-									  		<input type="text" class="form-control" id="bairro" name="bairro" value="${requerente.endereco.bairro}"/>
-									  	</div>
-							  		</div>
-						  		</div>
-						  		
-						  		<div class="row">
-							  		<div class="col-md-12 col-sm-12">
-							  			<div class="form-group">
-									  		<label class="descricao" for="cidade">Retorno à Unidade</label>
-									  		<input type="text" class="form-control" id="bairro" name="bairro" value="${requerente.endereco.bairro}"/>
-									  	</div>
-							  		</div>
-								</div>							  		
-							</div>
-						</div>
-						
-						<div id="acaoDeSocorro" class="tab-pane fad">
-							<div class="well">
-								<div class="form-group">
-							  		<label class="titulo" for="residencial">Ação de Socorro</label>
-							  	</div>
-							  	
-							  	<div class="row">
-							  		<div class="col-md-3 col-sm-6">
-								  		<div class="checkbox">
-										  <label class="descricao">
-										    <input type="checkbox" value="">
-										    	Houve Salvamento
-										  </label>
-										</div>
-								  	</div>
-								  	
-								  	<div class="col-md-3 col-sm-6">
-								  		<div class="checkbox">
-										  <label class="descricao">
-										    <input type="checkbox" value="">
-										    	Houve Retirada de Cadáver
-										  </label>
-										</div>
-								  	</div>
-								  	
-								  	<div class="col-md-3 col-sm-6">
-								  		<div class="checkbox">
-										  <label class="descricao">
-										    <input type="checkbox" value="">
-										    	Houve Arrombamento
-										  </label>
-										</div>
-								  	</div>											  
-								  	
-								  	<div class="col-md-3 col-sm-6">
-								  		<div class="checkbox">
-										  <label class="descricao">
-										    <input type="checkbox" value="">
-										    	Houve Recolhimento de Valores
-										  </label>
-										</div>
-								  	</div>
-							  	</div>	
-							  	
-							  	<div class="row">
-							  		<div class="col-md-4 col-sm-4">
-								  		<div class="form-group">
-									  		<label class="descricao" for="cidade">Prejuízo Quanto ao Continente</label>
-									  	</div>
-									  	
-										<div class="radio">
-											<label>
-												<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-												Nulo   
-											</label>
-										</div>
-										
-										<div class="radio">
-											<label>
-												<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-												Insignificante   
-											</label>
-										</div>
-										
-										<div class="radio">
-											<label>
-												<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-												Nulo   
-											</label>
-										</div>
-										
-										<div class="radio">
-											<label>
-												<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-												Nulo   
-											</label>
-										</div>
-									</div>
-							  	</div>
-							  	
-							  	<div class="row">
-							  		<div class="col-md-4 col-sm-4">
-								  		<div class="form-group">
-									  		<label class="descricao" for="cidade">Prejuízo Quanto ao Conteúdo</label>
-									  	</div>
-									  	
-										<div class="radio">
-											<label>
-												<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-												Nulo   
-											</label>
-										</div>
-										
-										<div class="radio">
-											<label>
-												<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-												Insignificante   
-											</label>
-										</div>
-										
-										<div class="radio">
-											<label>
-												<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-												Nulo   
-											</label>
-										</div>
-										
-										<div class="radio">
-											<label>
-												<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-												Nulo   
-											</label>
-										</div>
-									</div>
-							  	</div>
-							  	
-							  	<div class="row">
-							  		<div class="col-md-12 col-sm-12">
-							  			<div class="form-group">
-									  		<label class="descricao" for="cidade">Bens Móveis e Imóveis Atingidos</label>
-									  		<input type="text" class="form-control" id="bairro" name="bairro" value="${requerente.endereco.bairro}"/>
-									  	</div>
-							  		</div>
-							  	</div>
-							  	
-							  	<div class="row">
-							  		<div class="col-md-12 col-sm-12">
-							  			<div class="form-group">
-									  		<label class="descricao" for="cidade">Nº Guia de Recolhimento</label>
-									  		<input type="text" class="form-control" id="bairro" name="bairro" value="${requerente.endereco.bairro}"/>
-									  	</div>
-							  		</div>
-							  	</div>	
-							  	
-							  	<div class="row">
-							  		<div class="col-md-12 col-sm-12">
-							  			<div class="form-group">
-									  		<label class="descricao" for="cidade">A quem foram confiados</label>
-									  		<input type="text" class="form-control" id="bairro" name="bairro" value="${requerente.endereco.bairro}"/>
-									  	</div>
-							  		</div>
-							  	</div>	
-							  	
-							  	<div class="row">
-							  		<div class="col-md-12 col-sm-12">
-							  			<div class="form-group">
-									  		<label class="descricao" for="cidade">Viaturas</label>
-									  		<input type="text" class="form-control" id="bairro" name="bairro" value="${requerente.endereco.bairro}"/>
-									  	</div>
-							  		</div>
-							  	</div>	
-							  	
-							  	<div class="row">
-							  		<div class="col-md-12 col-sm-12">
-							  			<div class="form-group">
-									  		<label class="descricao" for="cidade">Vítimas(Nome/Destino)</label>
-									  		<input type="text" class="form-control" id="bairro" name="bairro" value="${requerente.endereco.bairro}"/>
-									  	</div>
-							  		</div>
-							  	</div>	
-							  	
-							  	<div class="row">
-							  		<div class="col-md-12 col-sm-12">
-							  			<div class="form-group">
-									  		<label class="descricao" for="cidade">Auxílios Durante os Trabalhos</label>
-									  		<input type="text" class="form-control" id="bairro" name="bairro" value="${requerente.endereco.bairro}"/>
-									  	</div>
-							  		</div>
-							  	</div>	
-							  	
-							  	<div class="row">
-							  		<div class="col-md-12 col-sm-12">
-							  			<div class="form-group">
-									  		<label class="descricao" for="cidade">Pessoal Empregado</label>
-									  		<input type="text" class="form-control" id="bairro" name="bairro" value="${requerente.endereco.bairro}"/>
-									  	</div>
-							  		</div>
-							  	</div>	
-							  	
-							  	<div class="row">
-							  		<div class="col-md-12 col-sm-12">
-							  			<div class="form-group">
-									  		<label class="descricao" for="cidade">A quem foi Entregue o local</label>
-									  		<input type="text" class="form-control" id="bairro" name="bairro" value="${requerente.endereco.bairro}"/>
-									  	</div>
-							  		</div>
-							  	</div>	
-							  	
-							  	<div class="row">
-							  		<div class="col-md-12 col-sm-12">
-							  			<div class="form-group">
-									  		<label class="descricao" for="cidade">Observações</label>
-									  		<input type="text" class="form-control" id="bairro" name="bairro" value="${requerente.endereco.bairro}"/>
-									  	</div>
-							  		</div>
-							  	</div>							  	
-							</div>
-						</div>
-						
-						<div id="responsavel" class="tab-pane fad">
-							<div class="well">
-								<div class="form-group">
-							  		<label class="titulo" for="residencial">Responsável pelo Socorro</label>
-							  	</div>
-							  	
-							  	<div class="row">
-							  		<div class="col-md-8 col-sm-8">
-							  			<div class="form-group">
-									  		<label class="descricao" for="cidade">Nome</label>
-									  		<input type="text" class="form-control" id="bairro" name="bairro" value="${requerente.endereco.bairro}"/>
-									  	</div>
-							  		</div>
-							  		
-							  		<div class="col-md-4 col-sm-4">
-							  			<div class="form-group">
-									  		<label class="descricao" for="cidade">RG</label>
-									  		<input type="text" class="form-control" id="bairro" name="bairro" value="${requerente.endereco.bairro}"/>
-									  	</div>
-							  		</div>
-								</div>
-								
-								<div class="row">
-							  		<div class="col-md-6 col-sm-8">
-							  			<div class="form-group">
-									  		<label class="descricao" for="cidade">Função</label>
-									  		<input type="text" class="form-control" id="bairro" name="bairro" value="${requerente.endereco.bairro}"/>
-									  	</div>
-							  		</div>								
+						  	</div>
+					  	</div>
+				  		
+				  		<div class="row">
+				  			<div class="col-md-12">
+				  				<div class="form-group">
+						  			<label class="descricao" for="relato">Relato dos Fatos:</label>
+						  			<textarea class="form-control" rows="5" id="relato" name="relato">${ocorrencia.relato}</textarea>
 								</div>
 							</div>
 						</div>
-						
-					</div>
+				  		
+				  		<div class="row">
+					  		<div class="col-md-12">
+							  	<div class="form-group">
+								  	<button id="btnSalvar" type="button" class="btn btn-cadastro col-md-2 col-sm-4 col-xs-12" >Salvar</button>				  	
+							  	</div>
+							</div>
+					  	</div>
+				  	</div>
 				</div>
-							
+			</div>
 		</form>
 	</body>
 	
@@ -423,4 +125,5 @@
 	<script src=<c:url value="/resources/jquery/jquery.mask.min.js"/>></script>
 	<script src=<c:url value="/resources/bootstrap/js/bootstrap.min.js"/>></script>
 	<script src=<c:url value="/resources/javascript/cadastroOcorrencia.js"/>></script>
+	<script src=<c:url value="/resources/javascript/util.js"/>></script>
 </html>

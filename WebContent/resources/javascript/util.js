@@ -14,15 +14,29 @@ $(document).ready(function() {
 	        });
 	    };
 	    
-	    
 	    $.fn.limparCritica = function() {
 	    	return this.each (function() {
 	    		$('#warning').css("display", "block");
 				$(this).removeClass("has-error has-feedback")
 	        });
 	    }; 
+	    
+	    
 	})( jQuery );
 	
+	validaCampo = function(idCampo, divCampo, descCampo) {
+		
+		if($("#" + idCampo).val().trim() == "") {
+			$("#" + divCampo).realizaCritica({'mensagem' : "Campo Obrigatório: " + descCampo, 'field' : idCampo});
+			$("#" + idCampo).focus();
+			
+			return false;
+		} else {
+			$("#" + divCampo).limparCritica();
+		}
+		
+		return true;		
+	}	
 	
 	validaCPF = function(cpf) { 
 		strCPF = cpf; 
