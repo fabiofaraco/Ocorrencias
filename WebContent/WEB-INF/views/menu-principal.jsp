@@ -43,7 +43,7 @@
 		                        <a class="page-scroll" href="#requerentes">Requerentes</a>
 		                    </li>
 		                    <li>
-		                        <a class="page-scroll" href="#evento">Evento</a>
+		                        <a class="page-scroll" href="#ocorrencias">Ocorrências</a>
 		                    </li>
 		                    <li>
 		                        <a class="page-scroll" href="#protocolos">Protocolos</a>
@@ -74,12 +74,12 @@
 		        <c:import url="lista-requerente.jsp" />
 		    </section>
 		    
-		    <section id="evento" class="section section-color-2">
+		    <section id="ocorrencias" class="section section-color-2">
 		        <c:import url="lista-ocorrencia.jsp" />
 		    </section>
 		    
 		    <section id="protocolos" class="section section-color-1">
-		        <c:import url="lista-protocolo.jsp" />
+		        <c:import url="lista-protocolo.jsp" /> 
 		    </section>
 		    
 		    <section id="certidao" class="section section-color-2">
@@ -92,9 +92,13 @@
 	<script src=<c:url value="/resources/bootstrap/js/bootstrap.min.js"/>></script>
 	<script src=<c:url value="/resources/layout/js/jquery.easing.min.js"/>></script>
 	<script src=<c:url value="/resources/layout/js/scrolling-nav.js"/>></script>
+	<script src=<c:url value="/resources/jquery/jquery.mask.min.js"/>></script>
 	<script src=<c:url value="/resources/javascript/tabela.js"/>></script>
 	<script src=<c:url value="/resources/javascript/listaUsuario.js"/>></script>
 	<script src=<c:url value="/resources/javascript/listaRequerente.js"/>></script>
+	<script src=<c:url value="/resources/javascript/listaOcorrencia.js"/>></script>
+	<script src=<c:url value="/resources/javascript/listaProtocolo.js"/>></script>
+	<script src=<c:url value="/resources/javascript/util.js"/>></script>
 	<script src=<c:url value="/resources/datatable/js/jquery.dataTables.min.js"/>></script>
 	<script src=<c:url value="/resources/datatable/js/dataTables.bootstrap.min.js"/>></script>
 	

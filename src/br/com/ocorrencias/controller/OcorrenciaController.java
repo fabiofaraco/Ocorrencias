@@ -14,8 +14,6 @@ import br.com.ocorrencias.bean.Cidade;
 import br.com.ocorrencias.bean.Estado;
 import br.com.ocorrencias.bean.Evento;
 import br.com.ocorrencias.bean.Ocorrencia;
-import br.com.ocorrencias.bean.Perfil;
-import br.com.ocorrencias.bean.Usuario;
 import br.com.ocorrencias.dao.Dao;
 import br.com.ocorrencias.dao.EnderecoDao;
 import br.com.ocorrencias.dao.GenericDao;
@@ -83,16 +81,26 @@ public class OcorrenciaController {
 //	--------------------------------------------------------------------------------------------------------------
 	
 	@RequestMapping("/carregar")
-	public String carregarUsuario(Usuario usuario, Model model) {
-		Dao<Usuario> dao = new GenericDao<Usuario>(Usuario.class);
+	public String carregarUsuario(Ocorrencia ocorrencia, Model model) {
+		Dao<Ocorrencia> dao = new GenericDao<Ocorrencia>(Ocorrencia.class);
 		
-		Dao<Perfil> daoPerfil = new GenericDao<Perfil>(Perfil.class);
-		List<Perfil> perfis = daoPerfil.getLista("select p from Perfil p");
+		Ocorrencia occurrence = dao.buscar(ocorrencia.getId());
 		
-		model.addAttribute("usuario", dao.buscar(usuario.getId()));
-		model.addAttribute("perfis", perfis);
+		Dao<Estado> daoEstados = new GenericDao<Estado>(Estado.class);
+		List<Estado> estados = daoEstados.getLista("select e from Estado e");
 		
-		return "cadastro-usuario";
+		InterfaceEnderecoDao daoEndereco = new EnderecoDao();
+		List<Cidade> cidades = daoEndereco.carregarCidade(occurrence.getEndereco().getCidade().getEstado().getId());
+		
+		Dao<Evento> daoEvento = new GenericDao<Evento>(Evento.class);
+		List<Evento> eventos = daoEvento.getLista("select ev from Evento ev");
+		
+		model.addAttribute("estados", estados);
+		model.addAttribute("cidades", cidades);
+		model.addAttribute("eventos", eventos);
+		model.addAttribute("ocorrencia", occurrence);
+		
+		return "cadastro-ocorrencia";
 	}
 
 //	--------------------------------------------------------------------------------------------------------------
@@ -115,5 +123,13 @@ public class OcorrenciaController {
 	}	
 	
 //	--------------------------------------------------------------------------------------------------------------
-	
+
+	@RequestMapping("/remover")
+	public String removerOcorrencia(Ocorrencia ocorrencia, RedirectAttributes redirectAttributes) {
+		Dao<Ocorrencia> dao = new GenericDao<Ocorrencia>(Ocorrencia.class);
+		dao.remover(ocorrencia.getId());
+		
+		redirectAttributes.addFlashAttribute("msgSuccess", "Ocorrência removida com sucesso");
+		return "redirect:/menuPrincipal";
+	}
 }

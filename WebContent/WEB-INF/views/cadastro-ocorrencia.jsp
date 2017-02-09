@@ -66,7 +66,7 @@
 						  	<div class="col-md-3 col-sm-6">
 					  			<div class="form-group">
 							  		<label class="descricao" for="complemento">Bairro</label>
-							  		<input type="text" class="form-control" id="complemento" name="endereco.bairro" value="${requerente.endereco.bairro}"/>
+							  		<input type="text" class="form-control" id="complemento" name="endereco.bairro" value="${ocorrencia.endereco.bairro}"/>
 							  	</div>
 					  		</div>
 					  	</div>
@@ -116,6 +116,7 @@
 							</div>
 					  	</div>
 				  	</div>
+				  	<input type="hidden" class="form-control" id="id" name="id" value="${ocorrencia.id}"/>
 				</div>
 			</div>
 		</form>

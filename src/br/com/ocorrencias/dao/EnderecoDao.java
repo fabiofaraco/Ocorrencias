@@ -1,5 +1,6 @@
 package br.com.ocorrencias.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -8,10 +9,10 @@ import javax.persistence.Query;
 
 import br.com.ocorrencias.bean.Cidade;
 import br.com.ocorrencias.bean.Endereco;
+import br.com.ocorrencias.bean.Ocorrencia;
 import br.com.ocorrencias.util.PersistenceUtil;
 
 public class EnderecoDao extends GenericDao<Endereco> implements InterfaceEnderecoDao {
-
 	public EnderecoDao() {
 		super(Endereco.class);
 	}
@@ -33,6 +34,26 @@ public class EnderecoDao extends GenericDao<Endereco> implements InterfaceEndere
 		} catch(NoResultException e) {
 			return null;
 			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			manager.close();
+		}
+		
+		return null;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Ocorrencia> carregarEndereco(Date data) {
+		EntityManager manager = PersistenceUtil.getEntityManager();
+		try {
+			Query query = manager.createQuery("select o from Ocorrencia as o where o.data = :data");
+			query.setParameter("data", data);
+			
+			return query.getResultList();
+		} catch(NoResultException e) {
+			return null;
 		} catch(Exception e) {
 			e.printStackTrace();
 		} finally {
