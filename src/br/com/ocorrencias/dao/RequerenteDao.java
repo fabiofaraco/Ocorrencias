@@ -30,4 +30,22 @@ public class RequerenteDao extends GenericDao<Requerente> implements InterfaceRe
 		}
 	}
 
+	@Override
+	public Requerente buscarCpf(String cpf) {
+		EntityManager manager = PersistenceUtil.getEntityManager();
+		try {
+			Query query = manager.createQuery("select r from Requerente r where r.cpf = :cpf");
+			query.setParameter("cpf", cpf);
+			
+			return (Requerente)query.getSingleResult();
+			
+		} catch(NoResultException e) {
+			e.printStackTrace();
+		} finally {
+			manager.close();
+		}
+		
+		return null;
+	}
+
 }

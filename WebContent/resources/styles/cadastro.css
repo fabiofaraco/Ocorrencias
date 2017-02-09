@@ -9,6 +9,30 @@ h1 {
 	 color: #337ab7;
 }
 
+.modal-header, h3 {
+    background-color: #337ab7;
+    color:#FFFFFF !important;
+    font-size: 30px;
+}
+
+.btn-lista{
+	background-color: #B78433;
+	border-color: #6A4F23;
+	color:#FFFFFF;
+	font-size:20px;
+}
+
+.btn-lista:hover,
+.btn-lista:focus {
+	background-color: #6A4F23;
+	border-color: #6A4F23;
+	color:#FFFFFF;
+}
+
+.page-header h1 {
+	 color: #337ab7;
+}
+
 .tab-content {
 	padding-top:15px;
 }
