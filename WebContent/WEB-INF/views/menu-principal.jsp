@@ -98,7 +98,9 @@
 	<script src=<c:url value="/resources/javascript/listaRequerente.js"/>></script>
 	<script src=<c:url value="/resources/javascript/listaOcorrencia.js"/>></script>
 	<script src=<c:url value="/resources/javascript/listaProtocolo.js"/>></script>
+	<script src=<c:url value="/resources/javascript/relatorio.js"/>></script>
 	<script src=<c:url value="/resources/javascript/util.js"/>></script>
+	<script src=<c:url value="/resources/javascript/mensagem.js"/>></script>
 	<script src=<c:url value="/resources/datatable/js/jquery.dataTables.min.js"/>></script>
 	<script src=<c:url value="/resources/datatable/js/dataTables.bootstrap.min.js"/>></script>
 	

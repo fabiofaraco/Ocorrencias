@@ -12,7 +12,6 @@ $(document).ready(function() {
 						 });
 					} else {
 						$("#divCpf").limparCritica();
-						
 					}
 				});
 			} else {
@@ -20,8 +19,6 @@ $(document).ready(function() {
 				      'mensagem' : 'Por favor, digite um CPF válido',
 				      'field' : "cpf" 
 				 });
-				
-				  $("#cpf").attr("placeholder", "Por favor, digite um CPF válido");
 			}
 		}
     });	
@@ -68,7 +65,39 @@ $(document).ready(function() {
 			return false;
 		}
 		
+		if(!validaData("dataNascimento", "divNascimento", "Data de Nascimento")) {
+			return false;
+		}
+		
 		if(!validaCampo("email", "divEmail", "Email")) {
+			return false;
+		}
+		
+		if(!validaCampo("logradouro", "divEndereco", "Endereço")) {
+			return false;
+		}
+		
+		if(!validaCampo("complemento", "divComplemento", "Complemento")) {
+			return false;
+		}
+		
+		if(!validaCampo("bairro", "divBairro", "Bairro")) {
+			return false;
+		}
+		
+		if(!validaCampo("estado", "divEstado", "Estado")) {
+			return false;
+		}
+		
+		if(!validaCampo("cidade", "divCidade", "Cidade")) {
+			return false;
+		}
+		
+		if(!validaCampo("residencial", "divResidencial", "Telefone Residencial")) {
+			return false;
+		}
+		
+		if(!validaCampo("celular", "divCelular", "Celular")) {
 			return false;
 		}
 		

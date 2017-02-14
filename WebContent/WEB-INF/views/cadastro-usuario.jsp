@@ -105,4 +105,5 @@
 	<script src=<c:url value="/resources/bootstrap/js/bootstrap.min.js"/>></script>
 	<script src=<c:url value="/resources/javascript/mensagem.js"/>></script>
 	<script src=<c:url value="/resources/javascript/cadastroUsuario.js"/>></script>
+	<script src=<c:url value="/resources/javascript/util.js"/>></script>
 </html>

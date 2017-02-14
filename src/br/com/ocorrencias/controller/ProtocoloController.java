@@ -1,5 +1,6 @@
 package br.com.ocorrencias.controller;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -17,7 +18,9 @@ import br.com.ocorrencias.dao.Dao;
 import br.com.ocorrencias.dao.EnderecoDao;
 import br.com.ocorrencias.dao.GenericDao;
 import br.com.ocorrencias.dao.InterfaceEnderecoDao;
+import br.com.ocorrencias.dao.InterfaceOcorrenciaDao;
 import br.com.ocorrencias.dao.InterfaceRequerenteDao;
+import br.com.ocorrencias.dao.OcorrenciaDao;
 import br.com.ocorrencias.dao.RequerenteDao;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -75,7 +78,7 @@ public class ProtocoloController {
 			model.addAttribute("requerente", requerente);
 			model.addAttribute("ocorrencia", ocorrencia);
 			model.addAttribute("openModal", true);
-			
+						
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -100,5 +103,39 @@ public class ProtocoloController {
 		
 		redirectAttributes.addFlashAttribute("msgSuccess", msg);
 		return "redirect:/menuPrincipal";
+	}
+
+//	--------------------------------------------------------------------------------------------------------------
+	
+	@RequestMapping("/validaCpf")
+	public @ResponseBody String validarCpf(String cpf) {
+		InterfaceRequerenteDao dao = new RequerenteDao();
+		
+		if(dao.validarCpf(cpf, 0)) {
+			return "O CPF digitado não está cadastrado no sistema.";
+		}
+		
+		return "";
+	}
+
+//	--------------------------------------------------------------------------------------------------------------
+	
+	@RequestMapping("/validaDataOcorrencia")
+	public @ResponseBody String validarDataOcorrencia(String data) {
+		InterfaceOcorrenciaDao dao = new OcorrenciaDao();
+		
+		SimpleDateFormat frmt = new SimpleDateFormat("dd/MM/yyyy");
+		
+		try {
+			Date dtOcorrencia = frmt.parse(data);
+			
+			if(!dao.validarDataOcorrencia(dtOcorrencia)) {
+				return "Nenhum ocorrência foi encontrada para esta data.";
+			}
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		return "";
 	}
 }

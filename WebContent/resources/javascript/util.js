@@ -4,6 +4,8 @@ $(document).ready(function() {
 	$('.mascara-telefone').mask('(00) 0000-0000');
 	$('.mascara-celular').mask('(00) 00000-0000');
 	
+//	----------------------------------------------------------------------------------------------
+	
 	(function( $ ){
 	    $.fn.realizaCritica = function(options) {
 	    	return this.each (function() {
@@ -11,18 +13,22 @@ $(document).ready(function() {
 				$('#warning').css("display", "block");
 				$("#" + options.field).val("");
 				$(this).addClass("has-error has-feedback")
+				$('html, body').animate({scrollTop:0}, 'slow');
 	        });
 	    };
 	    
+    //	------------------------------------------------------------------------------------------
+	    
 	    $.fn.limparCritica = function() {
 	    	return this.each (function() {
-	    		$('#warning').css("display", "block");
+	    		$('#warning').css("display", "none");
 				$(this).removeClass("has-error has-feedback")
 	        });
-	    }; 
-	    
+	    };
 	    
 	})( jQuery );
+
+//	----------------------------------------------------------------------------------------------
 	
 	validaCampo = function(idCampo, divCampo, descCampo) {
 		
@@ -37,6 +43,8 @@ $(document).ready(function() {
 		
 		return true;		
 	}	
+	
+//	----------------------------------------------------------------------------------------------
 	
 	validaCPF = function(cpf) { 
 		strCPF = cpf; 
@@ -92,4 +100,40 @@ $(document).ready(function() {
 	
 		return cboll;
 	}
+	
+//	----------------------------------------------------------------------------------------------
+	
+	validaData = function(idCampo, divCampo, descCampo) {
+		var expReg = new RegExp("(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/[12][0-9]{3}");
+		var data = $("#" + idCampo).val().trim();
+		var ardt = data.split("/");
+		var erro = false;
+		
+		if(data.search(expReg)==-1){
+			erro = true;
+		} else if(((ardt[1]==4)||(ardt[1]==6)||(ardt[1]==9)||(ardt[1]==11))&&(ardt[0]>30)) {
+			erro = true;
+		} else if ( ardt[1]==2) {
+			if((ardt[0]>28)&&((ardt[2]%4)!=0)) {
+				erro = true;
+			}
+			
+			if((ardt[0]>29)&&((ardt[2]%4)==0)) {
+				erro = true;
+			}
+		}
+		
+		if(erro) {
+			$("#" + divCampo).realizaCritica({'mensagem' : "Data Inválida: " + descCampo, 'field' : idCampo});
+			$("#" + idCampo).focus();
+			
+			return false;
+		} else {
+			$("#" + divCampo).limparCritica();
+		}
+		
+		return true;
+	}
+	
+//	----------------------------------------------------------------------------------------------
 });

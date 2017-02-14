@@ -30,13 +30,15 @@
 					  		<div id="divData" class="col-md-3 col-sm-3">
 								<div class="form-group">
 									<label class="descricao" for="data">Data</label>
-							  		<input type="text" class="form-control mascara-data" id="data" name="data" value="<fmt:formatDate pattern="dd/MM/yyyy" value="${ocorrencia.data}"/>" />
+									<fmt:setLocale value="pt-BR"/>
+									<fmt:formatDate value="${ocorrencia.data}" type="date" pattern="dd/MM/yyyy" var="dataFormatada" />
+									<input type="text" class="form-control mascara-data" id="data" name="data" value="${dataFormatada}" />
 							  	</div>
 						  	</div>
 						  	
 						  	<div id="divNatureza" class="col-md-4 col-sm-6">
 							  	<div class="form-group">
-							  		<label class="descricao" for="sobrenome">Natureza da Ocorrência</label>
+							  		<label class="descricao" for="evento">Natureza da Ocorrência</label>
 							  		
 							  		<select class="form-control" id="evento" name="evento">
 									    <option value=""><c:out value="Selecione..."/></option>
@@ -63,17 +65,17 @@
 							  	</div>
 						  	</div>
 						  	
-						  	<div class="col-md-3 col-sm-6">
+						  	<div id="divBairro" class="col-md-3 col-sm-6">
 					  			<div class="form-group">
-							  		<label class="descricao" for="complemento">Bairro</label>
-							  		<input type="text" class="form-control" id="complemento" name="endereco.bairro" value="${ocorrencia.endereco.bairro}"/>
+							  		<label class="descricao" for="bairro">Bairro</label>
+							  		<input type="text" class="form-control" id="bairro" name="endereco.bairro" value="${ocorrencia.endereco.bairro}"/>
 							  	</div>
 					  		</div>
 					  	</div>
 					  	
 					  	
 					  	<div class="row">
-					  		<div class="col-md-5 col-sm-3">
+					  		<div id="divEstado" class="col-md-5 col-sm-3">
 								<div class="form-group">
 									<label class="descricao" for="estado">Estado</label>
 									
@@ -85,8 +87,9 @@
 									</select>
 							  	</div>
 						  	</div>
+						  	
 						  	<div class="col-md-5 col-sm-6">
-							  	<div class="form-group">
+							  	<div id="divCidade" class="form-group">
 							  		<label class="descricao" for="cidade">Cidade</label>
 							  		
 							  		<select class="form-control" id="cidade" name="endereco.cidade">
@@ -101,7 +104,7 @@
 				  		
 				  		<div class="row">
 				  			<div class="col-md-12">
-				  				<div class="form-group">
+				  				<div id="divRelato" class="form-group">
 						  			<label class="descricao" for="relato">Relato dos Fatos:</label>
 						  			<textarea class="form-control" rows="5" id="relato" name="relato">${ocorrencia.relato}</textarea>
 								</div>
@@ -125,6 +128,7 @@
 	<script src=<c:url value="/resources/jquery/jquery-2.2.2.min.js"/>></script>
 	<script src=<c:url value="/resources/jquery/jquery.mask.min.js"/>></script>
 	<script src=<c:url value="/resources/bootstrap/js/bootstrap.min.js"/>></script>
+	<script src=<c:url value="/resources/javascript/mensagem.js"/>></script>
 	<script src=<c:url value="/resources/javascript/cadastroOcorrencia.js"/>></script>
 	<script src=<c:url value="/resources/javascript/util.js"/>></script>
 </html>

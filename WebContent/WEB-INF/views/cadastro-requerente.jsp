@@ -85,17 +85,17 @@
 							  	</div>
 						  	</div>
 						  	
-						  	<div class="col-md-3 col-sm-6">
+						  	<div id="divBairro" class="col-md-3 col-sm-6">
 					  			<div class="form-group">
-							  		<label class="descricao" for="complemento">Bairro</label>
-							  		<input type="text" class="form-control" id="complemento" name="endereco.bairro" value="${requerente.endereco.bairro}"/>
+							  		<label class="descricao" for="bairro">Bairro</label>
+							  		<input type="text" class="form-control" id="bairro" name="endereco.bairro" value="${requerente.endereco.bairro}"/>
 							  	</div>
 					  		</div>
 					  	</div>
 				  	
 				  	<div class="row">
 					  		<div class="col-md-5 col-sm-3">
-								<div class="form-group">
+								<div id="divEstado" class="form-group">
 									<label class="descricao" for="estado">Estado</label>
 									
 									<select class="form-control" id="estado" name="endereco.cidade.estado">
@@ -107,7 +107,7 @@
 							  	</div>
 						  	</div>
 						  	<div class="col-md-5 col-sm-6">
-							  	<div class="form-group">
+							  	<div id="divCidade" class="form-group">
 							  		<label class="descricao" for="cidade">Cidade</label>
 							  		
 							  		<select class="form-control" id="cidade" name="endereco.cidade">
@@ -126,14 +126,14 @@
 				  	
 				  	<div class="row">
 				  		<div class="col-md-3 col-sm-6">
-				  			<div class="form-group">
+				  			<div id="divResidencial" class="form-group">
 						  		<label class="descricao" for="residencial">Residencial</label>
 						  		<input type="text" class="form-control mascara-telefone" id="residencial" name="telefone.residencial" value="${requerente.telefone.residencial}"/>
 						  	</div>
 				  		</div>
 				  		
 				  		<div class="col-md-3 col-sm-6">
-				  			<div class="form-group">
+				  			<div id="divCelular" class="form-group">
 						  		<label class="descricao" for="celular">Celular</label>
 						  		<input type="text" class="form-control mascara-celular" id="celular" name="telefone.celular" value="${requerente.telefone.celular}"/>
 						  	</div>

@@ -29,7 +29,7 @@
 				  		</div>
 					
 				  		<div class="col-md-4">
-							<div id="divNome" class="form-group">
+							<div id="divCpf" class="form-group">
 								<label class="descricao" for="nome">CPF</label>
 						  		<input type="text" class="form-control mascara-cpf" id="cpf" name="requerente.cpf" value="${protocolo.requerente.cpf}">
 						  	</div>
@@ -42,14 +42,14 @@
 				  		</div>
 				  	
 					  	<div class="col-sm-4">
-						  	<div id="divSobrenome" class="form-group">
-						  		<label class="descricao" for="data">Data</label>
-						  		<input type="text" class="form-control mascara-data" id="data" name="ocorrencia.data" value="${protocolo.ocorrencia.data}"/>
+						  	<div id="divOcorrencia" class="form-group">
+						  		<label class="descricao" for="dataOcorrencia">Data</label>
+						  		<input type="text" class="form-control mascara-data" id="dataOcorrencia" name="ocorrencia.data" value="${protocolo.ocorrencia.data}"/>
 						  	</div>
 					  	</div>
 					  	
 					  	<div class="col-sm-8">
-						  	<div id="divSobrenome" class="form-group">
+						  	<div id="divEndereco" class="form-group">
 						  		<label class="descricao" for="endereco">Endereço</label>
 						  		<select class="form-control" id="endereco" name="endereco">
 									<option value="">Selecione...</option>
@@ -69,8 +69,9 @@
 				</div>			
 				<input type="hidden" class="form-control" id="id" name="id" value="${protocolo.id}"/>
 				
-				<input type="hidden" class="form-control" id="openModal" name="openModal" value="${openModal}"/>
-				
+				<input type="hidden" id="openModal" name="openModal" value="${openModal}"/>
+				<input type="hidden" id="msgRequerente" name="msgRequerente" value="${msgRequerente}"/>
+				<input type="hidden" id="msgOcorrencia" name="msgOcorrencia" value="${msgOcorrencia}"/>
 				
 				<div class="modal fade" id="modal-inserir-protocolo" role="dialog">
 					<div class="modal-dialog modal-md">
@@ -88,14 +89,14 @@
 									<div class="col-md-8">
 										<div id="divNome" class="form-group">
 											<label class="descricao" for="nome">Nome</label>
-									  		<input type="text" class="form-control" id="nome" name="nome" value="${requerente.nome}">
+									  		<input type="text" class="form-control" id="nome" name="nome" value="${requerente.nome}" disabled>
 									  	</div>
 								  	</div>
 								
 							  		<div class="col-md-4">
-										<div id="divNome" class="form-group">
+										<div id="divCpfRequerente" class="form-group">
 											<label class="descricao" for="nome">CPF</label>
-									  		<input type="text" class="form-control mascara-cpf" id="cpf" name="cpf" value="${requerente.cpf}">
+									  		<input type="text" class="form-control mascara-cpf" value="${requerente.cpf}" disabled>
 									  	</div>
 								  	</div>
 							  	</div>
@@ -108,14 +109,14 @@
 								  	<div class="col-md-4">
 									  	<div id="divSobrenome" class="form-group">
 									  		<label class="descricao" for="data">Data</label>
-									  		<input type="text" class="form-control mascara-data" id="data" name="ocorrencia.data" value="${ocorrencia.data}"/>
+									  		<input type="text" class="form-control mascara-data" id="data" name="ocorrencia.data" value="${ocorrencia.data}" disabled />
 									  	</div>
 								  	</div>
 								  	
 								  	<div class="col-md-8">
 									  	<div id="divSobrenome" class="form-group">
 									  		<label class="descricao" for="natureza">Natureza</label>
-									  		<input type="text" class="form-control" id="natureza" name="evento.descricao" value="${ocorrencia.evento.descricao}"/>
+									  		<input type="text" class="form-control" id="natureza" name="evento.descricao" value="${ocorrencia.evento.descricao}" disabled />
 									  	</div>
 								  	</div>
 							  	</div>
@@ -125,7 +126,7 @@
 									  	<div id="divSobrenome" class="form-group">
 									  		<label class="descricao" for="sobrenome">Endereço</label>
 									  		<input type="text" class="form-control" id="natureza" name="endereco." 
-									  				value="${ocorrencia.endereco.logradouro} - ${ocorrencia.endereco.complemento} - ${ocorrencia.endereco.bairro} - ${ocorrencia.endereco.cidade.estado.sigla} - ${ocorrencia.endereco.cidade.nome}"/>
+									  				value="${ocorrencia.endereco.logradouro} - ${ocorrencia.endereco.complemento} - ${ocorrencia.endereco.bairro} - ${ocorrencia.endereco.cidade.estado.sigla} - ${ocorrencia.endereco.cidade.nome}" disabled/>
 									  	</div>
 								  	</div>
 							  	</div>
