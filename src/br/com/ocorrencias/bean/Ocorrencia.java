@@ -23,7 +23,7 @@ public class Ocorrencia {
 	private int id;
 	
 	@Temporal(TemporalType.DATE)
-	@Column(name="DT_OOCORRENCIA")
+	@Column(name="DT_OCORRENCIA")
 	private Date data = new Date();
 	
 	@ManyToOne
